@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useStore } from '../store/store';
+import { useAppSelector } from '../../store/hooks';
+import { selectAllProducts } from '../../store/productSlice';
 
 export default function BestSellers() {
-  const products = useStore((state) => state.products);
+  const products = useAppSelector(selectAllProducts);
   const bestSellers = products.filter(product => product.isBestSeller).slice(0, 4);
 
   return (

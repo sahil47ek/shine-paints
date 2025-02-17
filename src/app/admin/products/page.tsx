@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { useDispatch, useSelector } from 'react-redux';
-import type { AppDispatch, RootState } from '../../store/store';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { 
   addProduct, 
   updateProduct, 
@@ -11,12 +10,12 @@ import {
   selectAllProducts, 
   selectCategories,
   Product 
-} from '../../store/productSlice';
+} from '../../../store/productSlice';
 
 export default function ProductsManagement() {
-  const dispatch = useDispatch<AppDispatch>();
-  const products = useSelector((state: RootState) => selectAllProducts(state));
-  const categories = useSelector((state: RootState) => selectCategories(state));
+  const dispatch = useAppDispatch();
+  const products = useAppSelector(selectAllProducts);
+  const categories = useAppSelector(selectCategories);
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);

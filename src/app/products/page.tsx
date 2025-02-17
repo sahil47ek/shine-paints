@@ -2,14 +2,13 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { useSelector } from 'react-redux';
-import type { RootState } from '../store/store';
-import { selectAllProducts, selectCategories } from '../store/productSlice';
+import { useAppSelector } from '../../store/hooks';
+import { selectAllProducts, selectCategories, Product } from '../../store/productSlice';
 import Navbar from '../components/Navbar';
 
 export default function Products() {
-  const products = useSelector((state: RootState) => selectAllProducts(state));
-  const categories = useSelector((state: RootState) => selectCategories(state));
+  const products = useAppSelector(selectAllProducts);
+  const categories = useAppSelector(selectCategories);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortBy, setSortBy] = useState('name');
