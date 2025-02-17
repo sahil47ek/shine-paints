@@ -27,7 +27,7 @@ const initialState: ProductState = {
       description: 'High-quality interior paint with excellent coverage',
       price: 49.99,
       category: 'Interior',
-      image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f',
+      image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&auto=format&fit=crop&q=80',
       stock: 100,
       isBestSeller: true,
     },
@@ -37,12 +37,32 @@ const initialState: ProductState = {
       description: 'Weather-resistant exterior paint',
       price: 59.99,
       category: 'Exterior',
-      image: 'https://images.unsplash.com/photo-1562259949-e8e7689d7828',
+      image: 'https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&auto=format&fit=crop&q=80',
       stock: 75,
       isSpecialOffer: true,
       specialOfferDiscount: 10,
     },
-    // Add more sample products as needed
+    {
+      id: '3',
+      name: 'Wood Finish Classic',
+      description: 'Premium wood finish for lasting protection',
+      price: 44.99,
+      category: 'Wood Finish',
+      image: 'https://images.unsplash.com/photo-1610500795224-fb86b02926d7?w=800&auto=format&fit=crop&q=80',
+      stock: 50,
+      isBestSeller: true,
+    },
+    {
+      id: '4',
+      name: 'Metal Paint Pro',
+      description: 'Professional-grade metal paint',
+      price: 64.99,
+      category: 'Metal Paint',
+      image: 'https://images.unsplash.com/photo-1588854337116-d1c0a1662155?w=800&auto=format&fit=crop&q=80',
+      stock: 60,
+      isSpecialOffer: true,
+      specialOfferDiscount: 15,
+    },
   ],
   categories: ['Interior', 'Exterior', 'Wood Finish', 'Metal Paint'],
 };
@@ -57,7 +77,7 @@ export const productSlice = createSlice({
     addProduct: (state, action: PayloadAction<Omit<Product, 'id'>>) => {
       const newProduct = {
         ...action.payload,
-        id: Date.now().toString(), // Simple ID generation
+        id: Date.now().toString(),
       };
       state.products.push(newProduct);
     },
@@ -76,8 +96,6 @@ export const productSlice = createSlice({
       }
     },
     initializeFromStorage: (state) => {
-      // This is a no-op reducer that will be used to trigger initialization
-      // The actual initialization will be handled in the middleware
       return state;
     },
   },
