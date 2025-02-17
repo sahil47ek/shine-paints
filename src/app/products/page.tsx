@@ -95,7 +95,7 @@ export default function Products() {
         <section className="py-16 relative">
           {/* Background Pattern */}
           <Image
-            src="https://images.unsplash.com/photo-1619679347986-c2b87ac6e56f?w=1600&auto=format&fit=crop&q=80"
+            src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&auto=format&fit=crop&q=80"
             alt="Paint Background"
             fill
             className="object-cover opacity-5"
@@ -107,7 +107,7 @@ export default function Products() {
             <div className="bg-gradient-to-r from-rose-400 to-purple-500 rounded-2xl overflow-hidden mb-16">
               <div className="relative">
                 <Image
-                  src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1600&auto=format&fit=crop&q=80"
+                  src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&auto=format&fit=crop&q=80"
                   alt="Premium Paints"
                   width={1200}
                   height={400}
@@ -187,7 +187,7 @@ export default function Products() {
         <section className="py-16 relative">
           {/* Background Pattern */}
           <Image
-            src="https://images.unsplash.com/photo-1604147706283-d7119b5b822c?w=1600&auto=format&fit=crop&q=80"
+            src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&auto=format&fit=crop&q=80"
             alt="Paint Texture"
             fill
             className="object-cover opacity-5"
@@ -199,7 +199,7 @@ export default function Products() {
             <div className="bg-gradient-to-r from-purple-500 to-rose-400 rounded-2xl overflow-hidden mb-16">
               <div className="relative">
                 <Image
-                  src="https://images.unsplash.com/photo-1588854337115-1c67d9247e4d?w=1600&auto=format&fit=crop&q=80"
+                  src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&auto=format&fit=crop&q=80"
                   alt="Special Offers"
                   width={1200}
                   height={400}
