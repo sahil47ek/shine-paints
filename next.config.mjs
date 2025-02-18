@@ -14,6 +14,9 @@ const nextConfig = {
   },
   env: {
     defaultProductImage: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&auto=format&fit=crop&q=80',
+  },
+  experimental: {
+    optimizeCss: true
   }
 };
 
