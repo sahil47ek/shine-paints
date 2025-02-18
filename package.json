@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run clean && next build",
     "start": "next start",
     "lint": "next lint",
-    "clean": "rm -rf node_modules .next"
+    "clean": "rm -rf .next"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
