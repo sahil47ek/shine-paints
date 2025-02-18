@@ -3,7 +3,7 @@ const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
   images: {
-    unoptimized: true,
+    domains: ['images.unsplash.com'],
     remotePatterns: [
       {
         protocol: 'https',
