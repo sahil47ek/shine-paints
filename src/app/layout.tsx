@@ -11,7 +11,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Shine Paints | Premium Paint Solutions',
+    default: 'Shine Paints | Premium Paint Solution',
     template: '%s | Shine Paints'
   },
   description: 'Transform your space with premium quality paints and expert color consultation. Discover our range of interior, exterior, and specialty paints.',
