@@ -1,13 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from './components/Footer';
 import { ReduxProvider } from '../store/provider';
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -53,7 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body>
         <ReduxProvider>
           {children}
           <Footer />

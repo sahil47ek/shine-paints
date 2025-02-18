@@ -112,5 +112,7 @@ export const {
 
 export const selectAllProducts = (state: RootState) => state.products.products;
 export const selectCategories = (state: RootState) => state.products.categories;
+export const selectProductById = (state: RootState, productId: string) => 
+  state.products.products.find(product => product.id === productId);
 
 export default productSlice.reducer; 
