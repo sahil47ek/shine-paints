@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/admin/', '/private/'],
     },
     sitemap: 'https://shinepaint.com/sitemap.xml',
+    host: 'https://shinepaint.com',
   }
 } 
