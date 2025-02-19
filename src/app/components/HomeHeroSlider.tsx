@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const slides = [
   {
@@ -9,21 +10,24 @@ const slides = [
     subtitle: 'Premium Quality Paints for Every Surface',
     cta: 'Shop Now',
     ctaLink: '/products',
-    gradient: 'from-rose-400 to-purple-500'
+    gradient: 'from-rose-400 to-purple-500',
+    image: 'https://img.freepik.com/free-photo/painter-painting-wall-with-roller_23-2148188261.jpg'
   },
   {
     title: 'Expert Color Consultation',
     subtitle: 'Find the Perfect Shade for Your Project',
     cta: 'Book Now',
     ctaLink: '/services/consultation',
-    gradient: 'from-blue-400 to-emerald-500'
+    gradient: 'from-blue-400 to-emerald-500',
+    image: 'https://img.freepik.com/free-photo/color-palette-guide-close-up_23-2148188273.jpg'
   },
   {
     title: 'Professional Tools',
     subtitle: 'Everything You Need for a Perfect Finish',
     cta: 'View Tools',
     ctaLink: '/tools',
-    gradient: 'from-amber-400 to-orange-500'
+    gradient: 'from-amber-400 to-orange-500',
+    image: 'https://img.freepik.com/free-photo/paint-brushes-collection-arrangement_23-2148188265.jpg'
   }
 ];
 
@@ -45,8 +49,26 @@ export default function HomeHeroSlider() {
 
   return (
     <section className="relative min-h-[calc(100vh-5rem)] flex items-center overflow-hidden">
-      {/* Background Gradient */}
-      <div className={`absolute inset-0 bg-gradient-to-r ${slides[currentSlide].gradient} transition-colors duration-700`} />
+      {/* Background Image and Gradient */}
+      <div className="absolute inset-0">
+        {slides.map((slide, index) => (
+          <div
+            key={slide.title}
+            className={`absolute inset-0 transition-opacity duration-700 ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <Image
+              src={slide.image}
+              alt={slide.title}
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className={`absolute inset-0 bg-gradient-to-r ${slide.gradient} opacity-75`} />
+          </div>
+        ))}
+      </div>
       
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
@@ -81,8 +103,8 @@ export default function HomeHeroSlider() {
           ))}
         </div>
 
-        {/* Slide Indicators - Centered at bottom */}
-        {/* <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex space-x-3">
+        {/* Slide Indicators */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
           {slides.map((_, index) => (
             <button
               key={index}
@@ -101,7 +123,7 @@ export default function HomeHeroSlider() {
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
-        </div> */}
+        </div>
       </div>
 
       {/* Decorative Elements */}

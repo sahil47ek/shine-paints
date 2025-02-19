@@ -75,27 +75,42 @@ export default function Products() {
 
       <div className="pt-0">
         {/* Hero Section */}
-        <section className="relative h-[80vh] flex items-center">
-          <Image
-            src="https://placehold.co/1600x900/rose/white/png?text=Premium+Paints"
-            alt="Paint Products"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="absolute inset-0 bg-gradient-to-r from-rose-400/80 to-purple-500/80" />
-          <div className="relative container mx-auto px-6">
-            <div className="max-w-3xl">
-              <h1 className="text-6xl font-bold mb-6 text-white animate-fade-in leading-tight">
-                Transform Your Space
+        <section className="relative pt-32 pb-20">
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="https://img.freepik.com/free-photo/paint-buckets-with-watercolor-collection_23-2148188263.jpg"
+              alt="Paint Products Background"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/50 to-black/60" />
+          </div>
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="inline-block px-4 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white mb-6">
+                Explore Our Collection
+              </div>
+              <h1 className="text-5xl font-bold mb-6 text-white">
+                Premium Paint Collection
               </h1>
-              <p className="text-2xl mb-8 text-white/90 animate-fade-in">
-                Premium paints and finishes for every surface and style
+              <p className="text-xl text-white/90 mb-8">
+                Discover our extensive range of high-quality paints and finishes for every surface. From interior elegance to exterior durability, find the perfect solution for your space.
               </p>
-              <button className="px-8 py-4 bg-white text-gray-900 rounded-lg text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                Explore Collection
-              </button>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
+                  <div className="text-white/80 text-sm">Products</div>
+                  <div className="text-white text-2xl font-bold">{products.length}+</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
+                  <div className="text-white/80 text-sm">Categories</div>
+                  <div className="text-white text-2xl font-bold">{categories.length}</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
+                  <div className="text-white/80 text-sm">Best Sellers</div>
+                  <div className="text-white text-2xl font-bold">{bestSellers.length}</div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -123,37 +138,16 @@ export default function Products() {
                   className="object-cover w-full h-[300px] opacity-20"
                 />
                 <div className="absolute inset-0 flex flex-col md:flex-row items-center justify-between p-8 md:p-12">
-                  <div className="text-center md:text-left mb-6 md:mb-0">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                      Best Sellers Collection
-                    </h2>
-                    <p className="text-xl text-white/90 mb-6 max-w-2xl">
-                      Discover our professional-grade paints loved by customers. Premium quality for every surface.
-                    </p>
-                    <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                      <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
-                        <div className="text-white/80 text-sm">Total Sales</div>
-                        <div className="text-white text-2xl font-bold">2,500+</div>
-                      </div>
-                      <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
-                        <div className="text-white/80 text-sm">Happy Customers</div>
-                        <div className="text-white text-2xl font-bold">1,200+</div>
-                      </div>
-                      <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
-                        <div className="text-white/80 text-sm">5-Star Reviews</div>
-                        <div className="text-white text-2xl font-bold">95%</div>
-                      </div>
-                    </div>
+                  <div className="text-white text-center md:text-left">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4">Premium Quality Paints</h2>
+                    <p className="text-white/90 text-lg mb-6">Discover our best-selling products trusted by professionals</p>
                   </div>
-                  <button className="px-8 py-4 bg-white text-gray-900 rounded-lg text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:bg-gray-50">
-                    Explore Collection
-                  </button>
                 </div>
               </div>
             </div>
 
             {/* Best Sellers Grid */}
-            <div className="grid md:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {bestSellers.map((product) => (
                 <Link
                   key={product.id}
@@ -168,20 +162,24 @@ export default function Products() {
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute top-2 right-2">
-                      <div className="bg-rose-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
-                        Best Seller
+                    {product.isBestSeller && (
+                      <div className="absolute top-2 right-2">
+                        <div className="bg-rose-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
+                          Best Seller
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                   <div className="p-5">
                     <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-rose-500 transition-colors duration-300">
                       {product.name}
                     </h3>
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
-                        ${product.price.toFixed(2)}
-                      </span>
+                      <div>
+                        <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
+                          ${product.price.toFixed(2)}
+                        </span>
+                      </div>
                       <span className="text-sm text-gray-500">{product.category}</span>
                     </div>
                   </div>
@@ -214,40 +212,9 @@ export default function Products() {
                   className="object-cover w-full h-[300px] opacity-20"
                 />
                 <div className="absolute inset-0 flex flex-col md:flex-row items-center justify-between p-8 md:p-12">
-                  <div className="text-center md:text-left mb-6 md:mb-0">
-                    <div className="inline-block px-4 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm mb-4">
-                      Limited Time Only
-                    </div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                      Special Offers
-                    </h2>
-                    <p className="text-xl text-white/90 mb-6 max-w-2xl">
-                      Save big on our premium paint collection. Don't miss out on these amazing deals!
-                    </p>
-                    <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                      <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
-                        <div className="text-white/80 text-sm">Savings Up To</div>
-                        <div className="text-white text-2xl font-bold">20% OFF</div>
-                      </div>
-                      <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
-                        <div className="text-white/80 text-sm">Ends In</div>
-                        <div className="text-white text-2xl font-bold">48 Hours</div>
-                      </div>
-                      <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
-                        <div className="text-white/80 text-sm">Products On Sale</div>
-                        <div className="text-white text-2xl font-bold">{specialOffers.length}</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <div className="bg-white/20 backdrop-blur-md rounded-lg p-6 text-white mb-4">
-                      <div className="text-3xl font-bold mb-1">UP TO</div>
-                      <div className="text-6xl font-bold mb-2">20%</div>
-                      <div className="text-2xl font-bold">OFF</div>
-                    </div>
-                    <button className="w-full px-8 py-4 bg-white text-gray-900 rounded-lg text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:bg-gray-50">
-                      Shop Now
-                    </button>
+                  <div className="text-white text-center md:text-left">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4">Special Offers</h2>
+                    <p className="text-white/90 text-lg mb-6">Limited time deals on premium paints</p>
                   </div>
                 </div>
               </div>

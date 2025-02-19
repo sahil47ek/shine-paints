@@ -114,16 +114,28 @@ export default function Home() {
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { title: "Modern Living Room", feature: "Sage Harmony", image: "/images/project1.jpg" },
-                { title: "Serene Bedroom", feature: "Desert Rose", image: "/images/project2.jpg" },
-                { title: "Contemporary Kitchen", feature: "Ocean Depth", image: "/images/project3.jpg" },
+                { 
+                  title: "Modern Living Room", 
+                  feature: "Sage Harmony", 
+                  image: "https://img.freepik.com/free-photo/modern-living-room-with-green-wall_23-2150635372.jpg" 
+                },
+                { 
+                  title: "Serene Bedroom", 
+                  feature: "Desert Rose", 
+                  image: "https://img.freepik.com/free-photo/3d-rendering-beautiful-luxury-bedroom-suite-hotel-with-tv_105762-2063.jpg" 
+                },
+                { 
+                  title: "Contemporary Kitchen", 
+                  feature: "Ocean Depth", 
+                  image: "https://img.freepik.com/free-photo/blue-kitchen-house-modern-interior-design_23-2150670736.jpg" 
+                },
               ].map((project, index) => (
                 <div 
                   key={project.title}
                   className="relative h-[500px] group overflow-hidden rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-500"
                   style={{ animationDelay: `${index * 200}ms` }}
-        >
-          <Image
+                >
+                  <Image
                     src={project.image}
                     alt={project.title}
                     fill
@@ -215,21 +227,38 @@ export default function Home() {
               Follow us <span className="font-semibold hover:text-rose-500 transition-colors cursor-pointer">@shinepaintsofficial</span> for daily inspiration
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[1, 2, 3, 4].map((item) => (
+              {[
+                { 
+                  title: "Interior Design Inspiration",
+                  image: "https://img.freepik.com/free-photo/modern-residential-house-interior-design_23-2150170170.jpg"
+                },
+                {
+                  title: "Color Palette Ideas",
+                  image: "https://img.freepik.com/free-photo/paint-roller-with-color-palette-guide_23-2148188273.jpg"
+                },
+                {
+                  title: "Professional Painting",
+                  image: "https://img.freepik.com/free-photo/painter-working-with-paint-roller_23-2148188289.jpg"
+                },
+                {
+                  title: "Texture & Finishes",
+                  image: "https://img.freepik.com/free-photo/close-up-paint-roller-wooden-surface_23-2148188259.jpg"
+                }
+              ].map((item) => (
                 <div 
-                  key={item} 
+                  key={item.title} 
                   className="relative aspect-square group overflow-hidden rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-500"
                 >
                   <Image
-                    src={`https://placehold.co/600x600/${item === 1 ? 'rose' : item === 2 ? 'purple' : item === 3 ? 'amber' : 'blue'}/white/png?text=Paint+Inspiration+${item}`}
-                    alt={`Instagram post ${item}`}
+                    src={item.image}
+                    alt={item.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                    <svg className="w-8 h-8 text-white transform scale-0 group-hover:scale-100 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-white font-semibold">{item.title}</h3>
+                    </div>
                   </div>
                 </div>
               ))}
