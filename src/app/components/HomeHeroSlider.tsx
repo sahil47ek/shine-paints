@@ -104,7 +104,7 @@ export default function HomeHeroSlider() {
         </div>
 
         {/* Slide Indicators */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
+        {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
           {slides.map((_, index) => (
             <button
               key={index}
@@ -123,7 +123,7 @@ export default function HomeHeroSlider() {
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* Decorative Elements */}
