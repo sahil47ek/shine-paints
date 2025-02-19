@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import type { Metadata } from 'next';
 import ContactForm from '../components/ContactForm';

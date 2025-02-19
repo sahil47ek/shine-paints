@@ -29,4 +29,19 @@ export async function submitContactForm(data: ContactFormData) {
       message: 'Something went wrong. Please try again later.'
     };
   }
+}
+
+export async function sendContactForm(formData: FormData) {
+  try {
+    // Process form data here
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+    
+    // Add your email sending logic here
+    
+    return { success: true };
+  } catch (error) {
+    return { success: false, error: 'Failed to send message' };
+  }
 } 
