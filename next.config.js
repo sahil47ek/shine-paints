@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['placehold.co'],
+    domains: ['placehold.co', 'images.unsplash.com'],
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if

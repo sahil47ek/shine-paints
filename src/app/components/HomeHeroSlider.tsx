@@ -29,10 +29,15 @@ const slides = [
 
 export default function HomeHeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setIsAnimating(true);
+      setTimeout(() => {
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+        setIsAnimating(false);
+      }, 700); // Match this with the exit animation duration
     }, 5000);
 
     return () => clearInterval(timer);
@@ -49,11 +54,16 @@ export default function HomeHeroSlider() {
           {slides.map((slide, index) => (
             <div
               key={slide.title}
-              className={`transition-all duration-700 ${
+              className={`transition-all duration-700 absolute w-full ${
                 index === currentSlide
                   ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-4 absolute'
+                  : isAnimating
+                  ? 'opacity-0 -translate-y-8'
+                  : 'opacity-0 translate-y-8'
               }`}
+              style={{
+                transitionTimingFunction: isAnimating ? 'cubic-bezier(0.4, 0, 0.2, 1)' : 'cubic-bezier(0.4, 0, 0.2, 1)',
+              }}
             >
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
                 {slide.title}
@@ -71,21 +81,27 @@ export default function HomeHeroSlider() {
           ))}
         </div>
 
-        {/* Slide Indicators */}
-        <div className="absolute bottom-8 left-6 flex space-x-3">
+        {/* Slide Indicators - Centered at bottom */}
+        {/* <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex space-x-3">
           {slides.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentSlide(index)}
+              onClick={() => {
+                setIsAnimating(true);
+                setTimeout(() => {
+                  setCurrentSlide(index);
+                  setIsAnimating(false);
+                }, 700);
+              }}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide
-                  ? 'bg-white scale-100'
-                  : 'bg-white/50 scale-75 hover:scale-90'
+                  ? 'bg-white scale-100 w-6'
+                  : 'bg-white/50 scale-75 hover:scale-90 hover:bg-white/70'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* Decorative Elements */}

@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useAppSelector } from '../../store/hooks';
-import { selectAllProducts, selectCategories, Product } from '../../store/productSlice';
+import { selectAllProducts, selectCategories } from '../../store/productSlice';
 import Navbar from '../components/Navbar';
 
 export default function Products() {
@@ -14,6 +15,20 @@ export default function Products() {
   const [sortBy, setSortBy] = useState('name');
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isSortOpen, setIsSortOpen] = useState(false);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.dropdown-container')) {
+        setIsCategoryOpen(false);
+        setIsSortOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Filter and sort products
   const filteredProducts = products
@@ -52,12 +67,6 @@ export default function Products() {
 
   const getSortLabel = () => {
     return sortOptions.find(option => option.value === sortBy)?.label || 'Sort by';
-  };
-
-  // Close dropdowns when clicking outside
-  const handleClickOutside = () => {
-    setIsCategoryOpen(false);
-    setIsSortOpen(false);
   };
 
   return (
@@ -146,8 +155,9 @@ export default function Products() {
             {/* Best Sellers Grid */}
             <div className="grid md:grid-cols-4 gap-8">
               {bestSellers.map((product) => (
-                <div
+                <Link
                   key={product.id}
+                  href={`/products/${product.id}`}
                   className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-1"
                 >
                   <div className="relative h-48">
@@ -172,12 +182,10 @@ export default function Products() {
                       <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
                         ${product.price.toFixed(2)}
                       </span>
-                      <button className="px-4 py-2 bg-gradient-to-r from-rose-400 to-purple-500 text-white rounded-lg text-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                        View Details
-                      </button>
+                      <span className="text-sm text-gray-500">{product.category}</span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -248,8 +256,9 @@ export default function Products() {
             {/* Special Offers Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {specialOffers.map((product) => (
-                <div
+                <Link
                   key={product.id}
+                  href={`/products/${product.id}`}
                   className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-1"
                 >
                   <div className="relative h-48">
@@ -261,44 +270,35 @@ export default function Products() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="absolute top-2 right-2">
-                      <div className="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg animate-pulse">
-                        {product.specialOfferDiscount || 0}% OFF
+                      <div className="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
+                        {product.specialOfferDiscount}% OFF
                       </div>
                     </div>
                   </div>
                   <div className="p-5">
-                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-purple-500 transition-colors duration-300">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-rose-500 transition-colors duration-300">
                       {product.name}
                     </h3>
-                    <p className="text-sm text-gray-600 mb-3 line-clamp-2">{product.description}</p>
                     <div className="flex items-center justify-between">
-                      <div className="space-y-1">
-                        <div className="text-sm text-gray-500 line-through">
-                          ${(product.price * (1 + (product.specialOfferDiscount || 0)/100)).toFixed(2)}
-                        </div>
-                        <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-rose-400">
+                      <div>
+                        <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
                           ${product.price.toFixed(2)}
-                        </div>
+                        </span>
+                        <span className="text-sm text-gray-400 line-through ml-2">
+                          ${(product.price / (1 - (product.specialOfferDiscount || 0) / 100)).toFixed(2)}
+                        </span>
                       </div>
-                      <button className="px-4 py-2 bg-gradient-to-r from-purple-500 to-rose-400 text-white rounded-lg text-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                        View Details
-                      </button>
-                    </div>
-                    <div className="mt-3 w-full bg-gray-100 rounded-full h-2">
-                      <div className="bg-gradient-to-r from-purple-500 to-rose-400 h-2 rounded-full w-3/4 animate-pulse" />
-                    </div>
-                    <div className="mt-2 text-xs text-gray-500 text-center">
-                      75% of offer claimed
+                      <span className="text-sm text-gray-500">{product.category}</span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
         </section>
 
         {/* Search and Filter Section */}
-        <section className="py-8 bg-gray-50">
+        <section className="py-8 bg-gray-50 sticky top-20 z-10">
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-3 gap-6">
               {/* Search */}
@@ -323,7 +323,7 @@ export default function Products() {
               </div>
 
               {/* Category Filter */}
-              <div className="relative">
+              <div className="relative dropdown-container">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Filter by Category
                 </label>
@@ -351,7 +351,7 @@ export default function Products() {
                   </button>
                   
                   {isCategoryOpen && (
-                    <div className="absolute z-10 w-full mt-1 bg-white border rounded-lg shadow-lg">
+                    <div className="absolute z-20 w-full mt-1 bg-white border rounded-lg shadow-lg">
                       <div className="py-1 max-h-60 overflow-auto">
                         <button
                           onClick={() => {
@@ -395,7 +395,7 @@ export default function Products() {
               </div>
 
               {/* Sort */}
-              <div className="relative">
+              <div className="relative dropdown-container">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Sort by
                 </label>
@@ -421,7 +421,7 @@ export default function Products() {
                   </button>
                   
                   {isSortOpen && (
-                    <div className="absolute z-10 w-full mt-1 bg-white border rounded-lg shadow-lg">
+                    <div className="absolute z-20 w-full mt-1 bg-white border rounded-lg shadow-lg">
                       <div className="py-1">
                         {sortOptions.map(option => (
                           <button
@@ -464,25 +464,49 @@ export default function Products() {
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
               {filteredProducts.map((product) => (
-                <div
+                <Link
                   key={product.id}
-                  className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300"
+                  href={`/products/${product.id}`}
+                  className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group"
                 >
                   <div className="relative h-64">
                     <Image
                       src={product.image}
                       alt={product.name}
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
+                    {(product.isBestSeller || product.isSpecialOffer) && (
+                      <div className="absolute top-4 left-4 flex gap-2">
+                        {product.isBestSeller && (
+                          <div className="bg-rose-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
+                            Best Seller
+                          </div>
+                        )}
+                        {product.isSpecialOffer && (
+                          <div className="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
+                            {product.specialOfferDiscount}% OFF
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                   <div className="p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">{product.name}</h3>
-                    <p className="text-gray-600 text-sm mb-4">{product.description}</p>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-rose-500 transition-colors">
+                      {product.name}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
-                        ${product.price.toFixed(2)}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
+                          ${product.price.toFixed(2)}
+                        </span>
+                        {product.isSpecialOffer && (
+                          <span className="text-sm text-gray-400 line-through">
+                            ${(product.price / (1 - (product.specialOfferDiscount || 0) / 100)).toFixed(2)}
+                          </span>
+                        )}
+                      </div>
                       <span className={`px-3 py-1 text-sm rounded-full ${
                         product.stock === 0 
                           ? 'text-red-700 bg-red-100' 
@@ -494,7 +518,7 @@ export default function Products() {
                       </span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
