@@ -89,12 +89,7 @@ export default function Services() {
                 >
                   Get Free Quote
                 </Link>
-                <Link
-                  href="#services"
-                  className="inline-block bg-white text-gray-900 px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300 animate-bounce-in"
-                >
-                  View Services
-                </Link>
+                
               </div>
               <div className="mt-12 grid grid-cols-3 gap-8">
                 <div className="text-center">
@@ -159,7 +154,7 @@ export default function Services() {
         </section>
 
         {/* Why Choose Us Section */}
-        <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+        <section className="pb-20 bg-gradient-to-b from-white to-gray-50">
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative h-[600px] rounded-2xl overflow-hidden">
@@ -177,8 +172,8 @@ export default function Services() {
                 <div className="grid grid-cols-2 gap-6">
                   {[
                     {
-                      title: "Expert Team",
-                      description: "Our professional painters bring years of experience and expertise to every project.",
+                      title: "Expert Paint Consulting",
+                      description: "We help customers select the ideal paint based on their home’s design, whether it’s contemporary, traditional, or modern.",
                       icon: (
                         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -186,8 +181,8 @@ export default function Services() {
                       )
                     },
                     {
-                      title: "Premium Materials",
-                      description: "We use only the highest quality paints and materials for lasting results.",
+                      title: "Professional Painting Services ",
+                      description: "To prevent fraudulent practices and ensure the highest quality, we provide professional painting services, guaranteeing the proper application of every coat.",
                       icon: (
                         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
@@ -195,8 +190,8 @@ export default function Services() {
                       )
                     },
                     {
-                      title: "Timely Completion",
-                      description: "We value your time and ensure projects are completed on schedule.",
+                      title: "Exclusive Add-ons & Warranty",
+                      description: "Our commitment doesn’t end with a sale. We offer free water service for a year and free touch-ups on selected products, ensuring long-term satisfaction.",
                       icon: (
                         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -204,8 +199,8 @@ export default function Services() {
                       )
                     },
                     {
-                      title: "Satisfaction Guaranteed",
-                      description: "Your satisfaction is our priority, backed by our quality guarantee.",
+                      title: "Honest Pricing & Transparency",
+                      description: "The paint industry often confuses customers with misleading quotations and low-quality alternatives. At Shine Paints, we openly discuss pricing, educate customers on product differences, and ensure they make informed choices.",
                       icon: (
                         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
@@ -243,7 +238,7 @@ export default function Services() {
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-white text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300 animate-bounce-in border-2 border-white hover:border-rose-400"
+              className="inline-block bg-white text-white bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300 animate-bounce-in border-2 border-white hover:border-rose-400"
             >
               Get Started
             </Link>

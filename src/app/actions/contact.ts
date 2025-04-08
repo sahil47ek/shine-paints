@@ -1,34 +1,49 @@
 'use server'
 
-interface ContactFormData {
+import { revalidatePath } from 'next/cache';
+
+interface LeadData {
   name: string;
   email: string;
+  phone: string;
   subject: string;
   message: string;
 }
 
-export async function submitContactForm(data: ContactFormData) {
+// In a real application, this would be stored in a database
+let leads: LeadData[] = [];
+
+export async function submitContactForm(data: LeadData) {
   try {
-    // Here you would typically:
-    // 1. Validate the data
-    // 2. Send an email
-    // 3. Store in database
-    // 4. Integrate with CRM
-    
-    // For now, we'll just simulate a successful submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Add timestamp to the lead data
+    const leadWithTimestamp = {
+      ...data,
+      createdAt: new Date().toISOString(),
+      status: 'new' as const
+    };
+
+    // Store the lead
+    leads.push(leadWithTimestamp);
+
+    // Revalidate the leads page to show the new data
+    revalidatePath('/admin/leads');
 
     return {
       success: true,
-      message: 'Thank you for your message. We will get back to you soon!'
+      message: 'Thank you for your message! We will get back to you soon.'
     };
   } catch (error) {
     console.error('Error submitting contact form:', error);
     return {
       success: false,
-      message: 'Something went wrong. Please try again later.'
+      message: 'There was an error submitting your message. Please try again later.'
     };
   }
+}
+
+// Function to get all leads (for the admin page)
+export async function getLeads() {
+  return leads;
 }
 
 export async function sendContactForm(formData: FormData) {

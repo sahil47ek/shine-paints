@@ -5,13 +5,34 @@ import Link from 'next/link';
 import { useAppSelector } from '../../store/hooks';
 import { selectProductById, selectAllProducts } from '../../store/productSlice';
 import Navbar from './Navbar';
+import { useState } from 'react';
 
 export default function ProductDetails({ id }: { id: string }) {
   const product = useAppSelector(state => selectProductById(state, id));
   const allProducts = useAppSelector(selectAllProducts);
+  const [quantity, setQuantity] = useState(1);
   const relatedProducts = allProducts
     .filter(p => p.category === product?.category && p.id !== id)
     .slice(0, 3);
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value);
+    if (value >= 1 && value <= (product?.stock || 1)) {
+      setQuantity(value);
+    }
+  };
+
+  const handleQuantityIncrement = () => {
+    if (quantity < (product?.stock || 1)) {
+      setQuantity(prev => prev + 1);
+    }
+  };
+
+  const handleQuantityDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(prev => prev - 1);
+    }
+  };
 
   if (!product) {
     return (
@@ -76,11 +97,11 @@ export default function ProductDetails({ id }: { id: string }) {
                 <p className="text-xl text-gray-600 mb-6">{product.description}</p>
                 <div className="flex items-center gap-4">
                   <span className="text-3xl font-bold bg-gradient-to-r from-rose-400 to-purple-500 bg-clip-text text-transparent">
-                    ${product.price.toFixed(2)}
+                    ${(product.price * quantity).toFixed(2)}
                   </span>
                   {product.isSpecialOffer && (
                     <span className="text-xl text-gray-400 line-through">
-                      ${(product.price / (1 - (product.specialOfferDiscount || 0) / 100)).toFixed(2)}
+                      ${((product.price / (1 - (product.specialOfferDiscount || 0) / 100)) * quantity).toFixed(2)}
                     </span>
                   )}
                 </div>
@@ -98,6 +119,42 @@ export default function ProductDetails({ id }: { id: string }) {
                   {product.stock > 0 ? `In Stock (${product.stock} units)` : 'Out of Stock'}
                 </div>
               </div>
+
+              {/* Quantity Selector */}
+              {product.stock > 0 && (
+                <div className="border-t border-gray-100 pt-6">
+                  <h3 className="text-lg font-semibold mb-4">Quantity</h3>
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center border rounded-lg overflow-hidden">
+                      <button
+                        onClick={handleQuantityDecrement}
+                        className="px-4 py-2 bg-gray-100 hover:bg-gray-200 transition-colors"
+                        disabled={quantity <= 1}
+                      >
+                        -
+                      </button>
+                      <input
+                        type="number"
+                        min="1"
+                        max={product.stock}
+                        value={quantity}
+                        onChange={handleQuantityChange}
+                        className="w-16 text-center border-x py-2 focus:outline-none"
+                      />
+                      <button
+                        onClick={handleQuantityIncrement}
+                        className="px-4 py-2 bg-gray-100 hover:bg-gray-200 transition-colors"
+                        disabled={quantity >= product.stock}
+                      >
+                        +
+                      </button>
+                    </div>
+                    <span className="text-sm text-gray-500">
+                      Max: {product.stock} units
+                    </span>
+                  </div>
+                </div>
+              )}
 
               {/* Actions */}
               <div className="border-t border-gray-100 pt-6 space-y-4">
@@ -131,13 +188,14 @@ export default function ProductDetails({ id }: { id: string }) {
                   href={`/products/${relatedProduct.id}`}
                   className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group"
                 >
-                  <div className="relative aspect-square">
+                  <div className="relative aspect-square overflow-hidden">
                     <Image
                       src={relatedProduct.image}
                       alt={relatedProduct.name}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     {(relatedProduct.isBestSeller || relatedProduct.isSpecialOffer) && (
                       <div className="absolute top-4 left-4">
                         {relatedProduct.isBestSeller && (

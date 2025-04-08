@@ -39,27 +39,43 @@ export default function Tools() {
   const paintingTools = [
     {
       name: "Professional Brush Set",
-      description: "Premium brushes for precise application",
       image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&auto=format&fit=crop&q=80",
       price: "$29.99"
     },
     {
       name: "Pro Roller System",
-      description: "Complete roller set for various surfaces",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80",
       price: "$39.99"
     },
     {
       name: "Paint Sprayer",
-      description: "High-efficiency sprayer for large projects",
       image: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&auto=format&fit=crop&q=80",
       price: "$199.99"
     },
     {
       name: "Complete Painter's Kit",
-      description: "Essential painting tools and accessories",
       image: "https://images.unsplash.com/photo-1572269951301-d623321c9595?w=800&auto=format&fit=crop&q=80",
       price: "$89.99"
+    },
+    {
+      name: "Paint Mixer",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80",
+      price: "$49.99"
+    },
+    {
+      name: "Paint Tray Set",
+      image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&auto=format&fit=crop&q=80",
+      price: "$24.99"
+    },
+    {
+      name: "Paint Scraper Kit",
+      image: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&auto=format&fit=crop&q=80",
+      price: "$19.99"
+    },
+    {
+      name: "Paint Edger",
+      image: "https://images.unsplash.com/photo-1572269951301-d623321c9595?w=800&auto=format&fit=crop&q=80",
+      price: "$34.99"
     }
   ];
 
@@ -118,72 +134,6 @@ export default function Tools() {
               <p className="text-xl mb-8 text-white/90 animate-fade-in">
                 Equip yourself with premium painting tools and innovative digital solutions. From professional-grade brushes to smart color visualization tools, we provide everything you need for a perfect finish.
               </p>
-              <div className="flex flex-wrap gap-6 mb-12">
-                <Link
-                  href="#digital-tools"
-                  className="inline-block bg-gradient-to-r from-rose-400 to-purple-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300 animate-bounce-in"
-                >
-                  Digital Tools
-                </Link>
-                <Link
-                  href="#painting-tools"
-                  className="inline-block bg-white text-gray-900 px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300 animate-bounce-in"
-                >
-                  Painting Tools
-                </Link>
-              </div>
-              
-              {/* Quick Access Tools */}
-              <div className="grid grid-cols-3 gap-6">
-                {digitalTools.map((tool, index) => (
-                  <Link
-                    key={tool.title}
-                    href={tool.link}
-                    className="bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all duration-300"
-                  >
-                    <div className="text-white mb-2">
-                      {tool.icon}
-                    </div>
-                    <h3 className="text-lg font-semibold text-white mb-1">
-                      {tool.title}
-                    </h3>
-                    <p className="text-white/80 text-sm">
-                      {tool.description}
-                    </p>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Digital Tools Section */}
-        <section className="py-20 bg-gradient-to-b from-white to-gray-50">
-          <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
-              Digital Tools
-            </h2>
-            <p className="text-xl text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-              Smart solutions to help plan and execute your painting projects
-            </p>
-            <div className="grid md:grid-cols-3 gap-8">
-              {digitalTools.map((tool) => (
-                <Link
-                  key={tool.title}
-                  href={tool.link}
-                  className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="w-14 h-14 bg-gradient-to-r from-rose-400/10 to-purple-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <div className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
-                      {tool.icon}
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-rose-400 group-hover:to-purple-500">
-                    {tool.title}
-                  </h3>
-                  <p className="text-gray-600">{tool.description}</p>
-                </Link>
-              ))}
             </div>
           </div>
         </section>
@@ -213,18 +163,9 @@ export default function Tools() {
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg font-bold mb-2 text-gray-900">{tool.name}</h3>
-                    <p className="text-gray-600 mb-4">{tool.description}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
-                        {tool.price}
-                      </span>
-                      <Link
-                        href="/contact"
-                        className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-                      >
-                        Learn More →
-                      </Link>
-                    </div>
+                    <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
+                      {tool.price}
+                    </span>
                   </div>
                 </div>
               ))}
@@ -241,7 +182,7 @@ export default function Tools() {
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-white text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300 animate-bounce-in border-2 border-white hover:border-rose-400"
+              className="inline-block bg-white text-white bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300 animate-bounce-in border-2 border-white hover:border-rose-400"
             >
               Contact Us
             </Link>

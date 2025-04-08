@@ -73,35 +73,6 @@ export default function AdminDashboard() {
           </div>
         ))}
       </div>
-
-      {/* Recent Activity */}
-      <div className="bg-white shadow rounded-lg p-6">
-        <h2 className="text-lg font-medium text-gray-900 mb-4">Recent Activity</h2>
-        <div className="border-t border-gray-200">
-          <div className="divide-y divide-gray-200">
-            {[1, 2, 3, 4, 5].map((item) => (
-              <div key={item} className="py-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <div className="h-8 w-8 rounded-full bg-rose-100 flex items-center justify-center">
-                      <ShoppingBagIcon className="h-4 w-4 text-rose-600" />
-                    </div>
-                    <div className="ml-4">
-                      <p className="text-sm font-medium text-gray-900">
-                        New order #{Math.floor(Math.random() * 1000)}
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        Customer purchased Premium Interior Paint
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-sm text-gray-500">2 hours ago</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
     </div>
   );
 } 

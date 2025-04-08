@@ -44,7 +44,7 @@ const teamMembers = [
 const values = [
   {
     title: 'Quality',
-    description: 'We never compromise on the quality of our products and services.',
+    description: 'The paint industry often confuses customers with misleading quotations and low-quality alternatives. At Shine Paints, we openly discuss pricing, educate customers on product differences, and ensure they make informed choices.',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
@@ -53,7 +53,7 @@ const values = [
   },
   {
     title: 'Innovation',
-    description: 'Constantly developing new products and techniques.',
+    description: 'The paint industry often confuses customers with misleading quotations and low-quality alternatives. At Shine Paints, we openly discuss pricing, educate customers on product differences, and ensure they make informed choices.',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -62,7 +62,7 @@ const values = [
   },
   {
     title: 'Sustainability',
-    description: 'Committed to environmentally friendly practices.',
+    description: 'We are committed to eco-friendly practices, promoting durable and safe paint solutions that reduce environmental impact while ensuring long-lasting beauty for homes and spaces.',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -119,7 +119,7 @@ export default function About() {
           <div className="relative h-full flex items-center">
             <div className="container mx-auto px-6">
               <div className="max-w-3xl text-white">
-                <h1 className="text-5xl md:text-6xl font-bold mb-6">
+                <h1 className="text-4xl font-bold mb-6">
                   Our Story
                 </h1>
                 <p className="text-xl text-gray-100">
@@ -130,8 +130,42 @@ export default function About() {
           </div>
         </section>
 
+        {/* Mission & Vision Section */}
+        <section className="relative py-20 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-16">
+              {/* Vision */}
+              <div className="bg-gradient-to-br from-rose-50 to-purple-50 rounded-2xl p-8 shadow-lg">
+                <div className="w-12 h-12 bg-rose-100 rounded-lg flex items-center justify-center text-rose-600 mb-6">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </div>
+                <h2 className="text-4xl font-bold mb-4 text-gray-900">Our Vision</h2>
+                <p className="text-gray-600 italic">
+                  "To build a trusted, customer-friendly paint brand across India, offering high-quality products and expert services that cater to all budget segments. We aim to redefine the paint industry by ensuring transparency, innovation, and lifetime trust with our customers."
+                </p>
+              </div>
+
+              {/* Mission */}
+              <div className="bg-gradient-to-br from-purple-50 to-rose-50 rounded-2xl p-8 shadow-lg">
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-6">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h2 className="text-4xl font-bold mb-4 text-gray-900">Our Mission</h2>
+                <p className="text-gray-600 italic">
+                  "At Shine Paints, we don't just sell paint; we provide expertise, trust, and quality. Our mission is to educate customers, eliminate fraudulent practices, and offer end-to-end painting solutions with honest pricing. By continuously innovating and expanding, we strive to make Shine Paints the go-to choice for homeowners and businesses across the country."
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Values Section */}
-        <section className="relative py-20">
+        <section className="relative pb-20">
           <div className="absolute inset-0">
             <Image
               src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=2000&q=80"
@@ -161,7 +195,7 @@ export default function About() {
         </section>
 
         {/* Team Section */}
-        <section className="relative py-20 bg-gray-50">
+        <section className="relative py-20 bg-gray-50 hidden">
           <div className="absolute inset-0">
             <Image
               src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=2000&q=80"

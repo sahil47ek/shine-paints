@@ -4,20 +4,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   HomeIcon,
-  SwatchIcon,
-  UserGroupIcon,
-  ShoppingBagIcon,
-  ChartBarIcon,
-  Cog6ToothIcon,
+  UserIcon,
 } from '@heroicons/react/24/outline';
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: HomeIcon },
-  { name: 'Products', href: '/admin/products', icon: SwatchIcon },
-  { name: 'Customers', href: '/admin/customers', icon: UserGroupIcon },
-  { name: 'Orders', href: '/admin/orders', icon: ShoppingBagIcon },
-  { name: 'Analytics', href: '/admin/analytics', icon: ChartBarIcon },
-  { name: 'Settings', href: '/admin/settings', icon: Cog6ToothIcon },
+  { name: 'Leads', href: '/admin/leads', icon: UserIcon },
 ];
 
 export default function AdminSidebar() {

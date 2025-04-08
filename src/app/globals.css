@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Swiper Styles */
+.swiper-button-next,
+.swiper-button-prev {
+  color: theme('colors.gray.900') !important;
+  background: theme('colors.white') !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 20px !important;
+}
+
+.swiper-pagination-bullet {
+  background: theme('colors.gray.300') !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: theme('colors.rose.500') !important;
+  width: 24px !important;
+  border-radius: 4px !important;
+} 

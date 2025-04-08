@@ -1,86 +1,47 @@
 import Navbar from '../components/Navbar';
-import type { Metadata } from 'next';
 import ContactForm from '../components/ContactForm';
-
-export const metadata: Metadata = {
-  title: 'Contact Us - Get in Touch',
-  description: 'Contact Shine Paints for expert color consultation, paint recommendations, or any questions about our premium paint solutions.',
-  openGraph: {
-    title: 'Contact Shine Paints - We\'re Here to Help',
-    description: 'Get in touch with our paint experts for personalized assistance and professional recommendations.',
-    images: [
-      {
-        url: '/contact-hero.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Contact Shine Paints',
-      },
-    ],
-  },
-}
-
-// Add JSON-LD structured data
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'ContactPage',
-  mainEntity: {
-    '@type': 'Organization',
-    name: 'Shine Paints',
-    description: 'Premium paint solutions provider',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '123 Paint Street',
-      addressLocality: 'Color City',
-      addressRegion: 'ST',
-      postalCode: '12345',
-      addressCountry: 'US'
-    },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+1-234-567-8900',
-      contactType: 'customer service',
-      email: 'contact@shinepaint.com',
-      availableLanguage: ['English']
-    },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '09:00',
-        closes: '17:00'
-      }
-    ]
-  }
-}
+import Locations from '../components/Locations';
 
 export default function Contact() {
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <div className="min-h-screen bg-white">
-        <Navbar />
+    <div className="min-h-screen bg-white">
+      <Navbar />
 
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-20 bg-gradient-to-r from-rose-50 to-purple-50">
-          <div className="container mx-auto px-6">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-5xl font-bold mb-6 text-gray-900">
-                Let's Create Together
-              </h1>
-              <p className="text-xl text-gray-600">
-                Have questions about our products or need expert color advice?
-                We're here to help bring your vision to life.
-              </p>
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-16 bg-gradient-to-r from-rose-50 to-purple-50">
+        <div className="absolute inset-0 bg-[url('/pattern.png')] opacity-5" />
+        <div className="container mx-auto px-6 relative">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-5xl font-bold mb-4 text-gray-900">
+              Contact Us
+            </h1>
+            <p className="text-xl text-gray-600">
+              Have questions about our products or need expert color advice?
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Contact Form Section - Fixed */}
+            <div className="lg:sticky lg:top-32 lg:h-fit">
+              <div className="lg:border-r lg:border-gray-100 lg:pr-16">
+                <h2 className="text-3xl font-bold mb-8 text-gray-900">Send us a message</h2>
+                <ContactForm />
+              </div>
+            </div>
+
+            {/* Locations Section - Scrollable */}
+            <div>
+              <h2 className="text-3xl font-bold mb-8 text-gray-900">Our Locations</h2>
+              <Locations />
             </div>
           </div>
-        </section>
-
-        {/* Contact Form Section */}
-        <ContactForm />
-      </div>
-    </>
+        </div>
+      </section>
+    </div>
   );
 } 

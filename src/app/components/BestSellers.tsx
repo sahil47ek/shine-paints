@@ -43,12 +43,6 @@ export default function BestSellers() {
                   </div>
                 </div>
               </div>
-              <Link
-                href="/products"
-                className="px-8 py-4 bg-white text-gray-900 rounded-lg text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:bg-gray-50"
-              >
-                Explore Collection
-              </Link>
             </div>
           </div>
         </div>
@@ -61,14 +55,14 @@ export default function BestSellers() {
               className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-1"
             >
               <Link href={`/products/${product.id}`} className="block">
-                <div className="relative h-48">
+                <div className="relative h-48 overflow-hidden">
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute top-2 right-2">
                     <div className="bg-rose-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
                       Best Seller

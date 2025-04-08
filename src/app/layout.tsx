@@ -1,7 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import "../styles/globals.css";
+import "./globals.css";
 import Footer from './components/Footer';
 import { ReduxProvider } from '../store/provider';
+import WhatsAppButton from './components/WhatsAppButton';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -47,10 +51,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <head>
+        <link rel="stylesheet" href={inter.className} />
+      </head>
+      <body className={inter.className}>
         <ReduxProvider>
           {children}
           <Footer />
+          <WhatsAppButton />
         </ReduxProvider>
       </body>
     </html>

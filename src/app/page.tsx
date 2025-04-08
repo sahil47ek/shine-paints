@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import type { Metadata } from 'next'
 import BestSellers from './components/BestSellers';
 import HomeHeroSlider from './components/HomeHeroSlider';
+import FeaturedProjects from './components/FeaturedProjects';
 
 export const metadata: Metadata = {
   title: 'Premium Paint Solutions for Your Home & Business',
@@ -72,89 +73,13 @@ export default function Home() {
         {/* Hero Section with Slider */}
         <HomeHeroSlider />
 
-        {/* Trending Colors Section */}
-        <section className="relative py-20">
-          <div className="absolute inset-0">
-            <div className="h-full w-full bg-gradient-to-b from-rose-100 to-purple-100"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white/80"></div>
-          </div>
-          <div className="relative container mx-auto px-6">
-            <h2 className="text-4xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 animate-fade-in">
-              Trending Colors of 2024
-            </h2>
-            <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto animate-fade-in">
-              Discover this year's most inspiring color palette, carefully curated by our color experts
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { name: "Desert Rose", color: "bg-[#E8B4B8]" },
-                { name: "Ocean Depth", color: "bg-[#1B4965]" },
-                { name: "Sage Harmony", color: "bg-[#9CAF88]" },
-                { name: "Golden Hour", color: "bg-[#F2C94C]" },
-              ].map((item, index) => (
-                <div 
-                  key={item.name} 
-                  className="group cursor-pointer transform hover:scale-105 transition-all duration-300"
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  <div className={`${item.color} h-64 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300`}></div>
-                  <p className="mt-4 text-lg font-medium text-center text-gray-800 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-rose-400 group-hover:to-purple-500 transition-colors">{item.name}</p>
-                </div>
-              ))}
-            </div>
-        </div>
-        </section>
+       
 
         {/* Featured Projects */}
-        <section className="py-20 bg-gray-50">
-          <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold mb-4 text-center text-gray-900 animate-fade-in">Featured Projects</h2>
-            <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto animate-fade-in">
-              Get inspired by our latest transformations and see how our colors bring spaces to life
-            </p>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                { 
-                  title: "Modern Living Room", 
-                  feature: "Sage Harmony", 
-                  image: "https://img.freepik.com/free-photo/modern-living-room-with-green-wall_23-2150635372.jpg" 
-                },
-                { 
-                  title: "Serene Bedroom", 
-                  feature: "Desert Rose", 
-                  image: "https://img.freepik.com/free-photo/3d-rendering-beautiful-luxury-bedroom-suite-hotel-with-tv_105762-2063.jpg" 
-                },
-                { 
-                  title: "Contemporary Kitchen", 
-                  feature: "Ocean Depth", 
-                  image: "https://img.freepik.com/free-photo/blue-kitchen-house-modern-interior-design_23-2150670736.jpg" 
-                },
-              ].map((project, index) => (
-                <div 
-                  key={project.title}
-                  className="relative h-[500px] group overflow-hidden rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-500"
-                  style={{ animationDelay: `${index * 200}ms` }}
-                >
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                      <p>Featuring {project.feature}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <FeaturedProjects />
 
         {/* Color Inspiration */}
-        <section className="py-20">
+        <section className="pt-20">
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="animate-slide-up">
@@ -174,7 +99,7 @@ export default function Home() {
                   ))}
                 </div>
                 <Link
-                  href="/products"
+                  href="/colors"
                   className="inline-flex items-center text-rose-500 font-semibold hover:text-purple-500 transition-colors group"
                 >
                   Browse All Colors
@@ -265,7 +190,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-    </div>
+      </div>
     </>
   );
 }
