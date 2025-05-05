@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   FaceSmileIcon,
   ChatBubbleBottomCenterTextIcon,
@@ -44,7 +45,7 @@ export default function Footer() {
     },
     {
       name: 'Instagram',
-      href: 'https://instagram.com/shinepaint',
+      href: 'https://www.instagram.com/shinepaints?igsh=MXcwbzJjdTZqOTAxMQ==',
       icon: <ChatBubbleBottomCenterTextIcon className="w-6 h-6" />,
     },
     {
@@ -52,24 +53,25 @@ export default function Footer() {
       href: 'https://twitter.com/shinepaint',
       icon: <CalculatorIcon className="w-6 h-6" />,
     },
-    {
-      name: 'LinkedIn',
-      href: 'https://linkedin.com/company/shinepaint',
-      icon: <BuildingOfficeIcon className="w-6 h-6" />,
-    },
   ];
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-black text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <Link href="/" className="inline-block mb-6">
-              <span className="text-2xl font-bold bg-gradient-to-r from-rose-400 to-purple-500 bg-clip-text text-transparent">
-                Shine Paints
-              </span>
+            <Link href="/" className="inline-block mb-0">
+              <div className="relative w-48 h-16">
+                <Image
+                  src="/logo-black.jpg"
+                  alt="Shine Paints"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
             </Link>
             <p className="text-gray-400 mb-6">
               Transform your space with premium quality paints and expert color consultation.
@@ -162,11 +164,11 @@ export default function Footer() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-8">
-              <a href="tel:+1234567890" className="text-gray-400 hover:text-white transition-colors flex items-center">
+              <a href="tel:+918714209920" className="text-gray-400 hover:text-white transition-colors flex items-center">
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                (123) 456-7890
+                +91 87142 09920
               </a>
               <a href="mailto:contact@shinepaint.com" className="text-gray-400 hover:text-white transition-colors flex items-center">
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

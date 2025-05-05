@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
 export default function Navbar() {
@@ -171,23 +172,25 @@ export default function Navbar() {
 
   return (
     <nav 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50  ${
         scrolled 
-          ? 'bg-white/90 backdrop-blur-md shadow-lg' 
-          : 'bg-black/50 backdrop-blur-sm'
+          ? 'bg-white/100 backdrop-blur-md shadow-lg' 
+          : 'bg-black/100 backdrop-blur-sm'
       }`}
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className={`text-2xl font-bold ${
-              scrolled 
-                ? 'bg-gradient-to-r from-rose-400 to-purple-500 bg-clip-text text-transparent' 
-                : 'text-white'
-            }`}>
-              Shine Paints
-            </span>
+            <div className="relative w-48 h-20">
+              <Image
+                src={scrolled ? '/logo-white.jpg' : '/logo-black.jpg'}
+                alt="Shine Paints Logo"
+                fill
+                className="object-contain transition-opacity duration-300"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Navigation Links */}
@@ -240,9 +243,9 @@ export default function Navbar() {
                     scrolled 
                       ? 'bg-white/100 backdrop-blur-md' 
                       : 'bg-black/90 backdrop-blur-sm'
-                  } border-t border-gray-100/20 w-screen relative left-[142%] -translate-x-1/2`}>
+                  } border-t border-gray-100/20 w-screen fixed left-0`}>
                     <div className="container mx-auto px-6">
-                      <div className="grid grid-cols-2 gap-8 py-8 max-w-4xl">
+                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-8">
                         {dropdownMenus.products.map((item) => (
                           <Link
                             key={item.name}
@@ -280,7 +283,7 @@ export default function Navbar() {
                           </Link>
                         ))}
                       </div>
-                      <div className={`py-4 border-t ${scrolled ? 'border-gray-100' : 'border-white/10'} max-w-4xl`}>
+                      <div className={`py-4 border-t ${scrolled ? 'border-gray-100' : 'border-white/10'}`}>
                         <Link
                           href="/products"
                           className={`flex items-center text-sm font-medium ${
@@ -329,9 +332,9 @@ export default function Navbar() {
                     scrolled 
                       ? 'bg-white/100 backdrop-blur-md' 
                       : 'bg-black/90 backdrop-blur-sm'
-                  } border-t border-gray-100/20 w-screen relative left-[14%] -translate-x-1/2`}>
+                  } border-t border-gray-100/20 w-screen fixed left-0`}>
                     <div className="container mx-auto px-6">
-                      <div className="grid grid-cols-2 gap-8 py-8 max-w-4xl">
+                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-8">
                         {dropdownMenus.services.map((item) => (
                           <Link
                             key={item.name}
@@ -369,7 +372,7 @@ export default function Navbar() {
                           </Link>
                         ))}
                       </div>
-                      <div className={`py-4 border-t ${scrolled ? 'border-gray-100' : 'border-white/10'} max-w-4xl`}>
+                      <div className={`py-4 border-t ${scrolled ? 'border-gray-100' : 'border-white/10'}`}>
                         <Link
                           href="/services"
                           className={`flex items-center text-sm font-medium ${
@@ -418,9 +421,9 @@ export default function Navbar() {
                     scrolled 
                       ? 'bg-white/100 backdrop-blur-md' 
                       : 'bg-black/90 backdrop-blur-sm'
-                  } border-t border-gray-100/20 w-screen relative left-[-160%] -translate-x-1/2`}>
+                  } border-t border-gray-100/20 w-screen fixed left-0`}>
                     <div className="container mx-auto px-6">
-                      <div className="grid grid-cols-2 gap-8 py-8 max-w-4xl">
+                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-8">
                         {dropdownMenus.tools.map((item) => (
                           <Link
                             key={item.name}
@@ -458,7 +461,7 @@ export default function Navbar() {
                           </Link>
                         ))}
                       </div>
-                      <div className={`py-4 border-t ${scrolled ? 'border-gray-100' : 'border-white/10'} max-w-4xl`}>
+                      <div className={`py-4 border-t ${scrolled ? 'border-gray-100' : 'border-white/10'}`}>
                         <Link
                           href="/tools"
                           className={`flex items-center text-sm font-medium ${
@@ -495,7 +498,7 @@ export default function Navbar() {
           {/* Social Links */}
           <div className="hidden md:flex items-center space-x-4">
             <a
-              href="https://instagram.com/shinepaint"
+              href="https://www.instagram.com/shinepaints?igsh=MXcwbzJjdTZqOTAxMQ=="
               target="_blank"
               rel="noopener noreferrer"
               className={scrolled ? 'text-gray-900' : 'text-white'}
@@ -510,16 +513,6 @@ export default function Navbar() {
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </a>
-            <a
-              href="https://linkedin.com/company/shinepaint"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={scrolled ? 'text-gray-900' : 'text-white'}
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
               </svg>
             </a>
           </div>

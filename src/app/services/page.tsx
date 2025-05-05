@@ -134,7 +134,7 @@ export default function Services() {
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg font-bold mb-2 text-gray-900">{service.title}</h3>
-                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    
                     <div className="flex items-center justify-between">
                       <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
                         {service.price}

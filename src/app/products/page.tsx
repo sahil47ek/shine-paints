@@ -88,8 +88,8 @@ export default function Products() {
         <section className="relative pt-32 pb-20">
           <div className="absolute inset-0 z-0">
             <Image
-              src="https://img.freepik.com/free-photo/paint-buckets-with-watercolor-collection_23-2148188263.jpg"
-              alt="Paint Products Background"
+              src="/product-banner.jpeg"
+              alt="Paint Products Collection"
               fill
               className="object-cover"
               priority

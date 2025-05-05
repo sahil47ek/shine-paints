@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 export default function WhatsAppButton() {
-  const phoneNumber = '+1234567890'; // Replace with your actual WhatsApp number
+  const phoneNumber = '+918714209920'; // Koduvally branch number
   const message = 'Hello, I am interested in your paint products. Can you help me?';
 
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

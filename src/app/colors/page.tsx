@@ -21,14 +21,17 @@ export default function ColorsPage() {
   const colorsPerPage = 12;
 
   const categories = ['All', 'Classic', 'Off-White', 'Brights', 'Accents', 'Neutrals', 'Blues', 'Browns', 'Greens', 'Greys', 'Pinks', 'Purples', 'Whites', 'Yellows', 'Reds'];
-  const brands = ['All', 'Asian Paints', 'Jotun', 'Fenomastic', 'Jotashield', 'Durosan'];
+  const brands = ['All', 'Asian Paints', 'Jotun Exterior', 'Jotun Interior', 'Durosan'];
 
   const filteredColors = useMemo(() => {
     return colors
       .filter(color => {
         const matchesSearch = color.name.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesCategory = selectedCategory === 'All' || color.category === selectedCategory;
-        const matchesBrand = selectedBrand === 'All' || color.brand === selectedBrand;
+        const matchesBrand = selectedBrand === 'All' || 
+          (selectedBrand === 'Jotun Exterior' ? (color.brand === 'Jotun' || color.brand === 'Jotashield') : 
+           selectedBrand === 'Jotun Interior' ? color.brand === 'Fenomastic' :
+           color.brand === selectedBrand);
         
         return matchesSearch && matchesCategory && matchesBrand;
       })
@@ -44,7 +47,8 @@ export default function ColorsPage() {
   const filteredFenomasticColors = useMemo(() => {
     return fenomasticColors.filter(colorFamily => {
       const matchesSearch = colorFamily.colors.some(color => 
-        color.name.toLowerCase().includes(searchTerm.toLowerCase())
+        color.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        color.code.toLowerCase().includes(searchTerm.toLowerCase())
       );
       const matchesCategory = selectedCategory === 'All' || colorFamily.category === selectedCategory;
       
@@ -56,7 +60,8 @@ export default function ColorsPage() {
   const filteredJotunColors = useMemo(() => {
     return jotunColors.filter(colorFamily => {
       const matchesSearch = colorFamily.colors.some(color => 
-        color.name.toLowerCase().includes(searchTerm.toLowerCase())
+        color.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        color.code.toLowerCase().includes(searchTerm.toLowerCase())
       );
       const matchesCategory = selectedCategory === 'All' || colorFamily.category === selectedCategory;
       
@@ -68,7 +73,8 @@ export default function ColorsPage() {
   const filteredJotashieldColors = useMemo(() => {
     return jotashieldColors.filter(colorFamily => {
       const matchesSearch = colorFamily.colors.some(color => 
-        color.name.toLowerCase().includes(searchTerm.toLowerCase())
+        color.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        color.code.toLowerCase().includes(searchTerm.toLowerCase())
       );
       const matchesCategory = selectedCategory === 'All' || colorFamily.category === selectedCategory;
       
@@ -80,7 +86,8 @@ export default function ColorsPage() {
   const filteredDurosanColors = useMemo(() => {
     return durosanColors.filter(colorFamily => {
       const matchesSearch = colorFamily.colors.some(color => 
-        color.name.toLowerCase().includes(searchTerm.toLowerCase())
+        color.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        color.code.toLowerCase().includes(searchTerm.toLowerCase())
       );
       const matchesCategory = selectedCategory === 'All' || colorFamily.category === selectedCategory;
       
@@ -99,12 +106,10 @@ export default function ColorsPage() {
   const getCurrentColors = () => {
     let colorsToDisplay: any[] = [];
 
-    if (selectedBrand === 'Fenomastic') {
+    if (selectedBrand === 'Jotun Interior') {
       colorsToDisplay = filteredFenomasticColors;
-    } else if (selectedBrand === 'Jotun') {
-      colorsToDisplay = filteredJotunColors;
-    } else if (selectedBrand === 'Jotashield') {
-      colorsToDisplay = filteredJotashieldColors;
+    } else if (selectedBrand === 'Jotun Exterior') {
+      colorsToDisplay = [...filteredJotunColors, ...filteredJotashieldColors];
     } else if (selectedBrand === 'Durosan') {
       colorsToDisplay = filteredDurosanColors;
     } else {
@@ -133,12 +138,10 @@ export default function ColorsPage() {
 
   // Calculate total pages based on selected brand
   const getTotalPages = () => {
-    if (selectedBrand === 'Fenomastic') {
+    if (selectedBrand === 'Jotun Interior') {
       return Math.ceil(filteredFenomasticColors.length / colorsPerPage);
-    } else if (selectedBrand === 'Jotun') {
-      return Math.ceil(filteredJotunColors.length / colorsPerPage);
-    } else if (selectedBrand === 'Jotashield') {
-      return Math.ceil(filteredJotashieldColors.length / colorsPerPage);
+    } else if (selectedBrand === 'Jotun Exterior') {
+      return Math.ceil((filteredJotunColors.length + filteredJotashieldColors.length) / colorsPerPage);
     } else if (selectedBrand === 'Durosan') {
       return Math.ceil(filteredDurosanColors.length / colorsPerPage);
     } else {
@@ -203,7 +206,7 @@ export default function ColorsPage() {
               <h2 className="text-lg font-semibold mb-4">Search Colors</h2>
               <input
                 type="text"
-                placeholder="Search by name..."
+                placeholder="Search by name or color code..."
                 className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500"
                 value={searchTerm}
                 onChange={(e) => {
@@ -255,6 +258,7 @@ export default function ColorsPage() {
                   defaultColor={colorFamily.colors[0]}
                   brand={colorFamily.brand}
                   category={colorFamily.category}
+                  searchTerm={searchTerm}
                 />
               ))}
             </div>

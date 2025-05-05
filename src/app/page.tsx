@@ -33,10 +33,10 @@ const jsonLd = {
   logo: 'https://placehold.co/512x512/rose/white/png?text=Shine+Paints+Logo',
   contactPoint: {
     '@type': 'ContactPoint',
-    telephone: '+1-234-567-8900',
+    telephone: '+91 87142 09920',
     contactType: 'customer service',
-    areaServed: 'US',
-    availableLanguage: ['English']
+    areaServed: 'IN',
+    availableLanguage: ['English', 'Malayalam']
   },
   offers: {
     '@type': 'AggregateOffer',
@@ -88,16 +88,6 @@ export default function Home() {
                   Explore our curated color palettes designed by expert color consultants.
                   From timeless neutrals to bold statements, find the perfect shade for your space.
                 </p>
-                <div className="flex flex-wrap gap-4 mb-8">
-                  {["Neutrals", "Pastels", "Bold", "Metallics"].map((category) => (
-                    <span
-                      key={category}
-                      className="px-6 py-2 text-black bg-white rounded-full text-sm shadow-sm border border-gray-100 hover:border-rose-300 hover:shadow-md transition-all duration-300 cursor-pointer"
-                    >
-                      {category}
-                    </span>
-                  ))}
-                </div>
                 <Link
                   href="/colors"
                   className="inline-flex items-center text-rose-500 font-semibold hover:text-purple-500 transition-colors group"
@@ -149,25 +139,34 @@ export default function Home() {
               Get Inspired
             </h2>
             <p className="text-gray-600 text-center mb-12 animate-fade-in">
-              Follow us <span className="font-semibold hover:text-rose-500 transition-colors cursor-pointer">@shinepaintsofficial</span> for daily inspiration
+              Follow us on{" "}
+              <Link
+                href="https://www.instagram.com/shinepaints?igsh=MXcwbzJjdTZqOTAxMQ=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold hover:text-rose-500 transition-colors"
+              >
+                @shinepaints
+              </Link>{" "}
+              for daily inspiration
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { 
                   title: "Interior Design Inspiration",
-                  image: "https://img.freepik.com/free-photo/modern-residential-house-interior-design_23-2150170170.jpg"
+                  image: "/i1.jpeg"
                 },
                 {
                   title: "Color Palette Ideas",
-                  image: "https://img.freepik.com/free-photo/paint-roller-with-color-palette-guide_23-2148188273.jpg"
+                  image: "/i2.jpeg"
                 },
                 {
                   title: "Professional Painting",
-                  image: "https://img.freepik.com/free-photo/painter-working-with-paint-roller_23-2148188289.jpg"
+                  image: "/i3.jpeg"
                 },
                 {
                   title: "Texture & Finishes",
-                  image: "https://img.freepik.com/free-photo/close-up-paint-roller-wooden-surface_23-2148188259.jpg"
+                  image: "/i4.jpeg"
                 }
               ].map((item) => (
                 <div 
