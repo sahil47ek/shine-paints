@@ -336,16 +336,15 @@ export default function Products() {
                 <Link
                   key={product.id}
                   href={`/products/${product.id}`}
-                  className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group"
+                  className="bg-white pt-10 rounded-xl overflow-hidden transition-all duration-300 group hover:shadow-md"
                 >
-                  <div className="relative h-64 overflow-hidden">
+                  <div className="relative h-48 overflow-hidden">
                     <Image
                       src={product.image}
                       alt={product.name}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="transition-transform duration-500 group-hover:scale-105 object-contain"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     {(product.isBestSeller || product.isSpecialOffer) && (
                       <div className="absolute top-4 left-4 flex gap-2">
                         {product.isBestSeller && (
@@ -367,19 +366,18 @@ export default function Products() {
                         {product.brand}
                       </span>
                       <span className={`px-3 py-1 text-sm rounded-full ${
-                        product.stock === 0 
-                          ? 'text-red-700 bg-red-100' 
-                          : product.stock <= 10 
-                          ? 'text-yellow-700 bg-yellow-100' 
-                          : 'text-green-700 bg-green-100'
+                        product.category === 'Interior'
+                          ? 'bg-blue-50 text-blue-600'
+                          : product.category === 'Exterior'
+                          ? 'bg-green-50 text-green-600'
+                          : 'bg-amber-50 text-amber-600'
                       }`}>
-                        {product.stock === 0 ? 'Out of Stock' : 'In Stock'}
+                        {product.category}
                       </span>
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-rose-500 transition-colors">
                       {product.name}
                     </h3>
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
