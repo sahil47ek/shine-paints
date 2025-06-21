@@ -58,11 +58,11 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-lg">
+    <div className="bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-lg">
       {/* Form Status Message */}
       {formStatus.message && (
         <div
-          className={`mb-6 p-4 rounded-lg ${
+          className={`mb-4 sm:mb-6 p-3 sm:p-4 rounded-lg text-sm sm:text-base ${
             formStatus.type === 'success'
               ? 'bg-green-50 text-green-700 border border-green-200'
               : 'bg-red-50 text-red-700 border border-red-200'
@@ -72,11 +72,11 @@ export default function ContactForm() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
         <div>
           <label 
             htmlFor="name" 
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-xs sm:text-sm font-medium text-gray-700 mb-1"
           >
             Name
           </label>
@@ -84,7 +84,7 @@ export default function ContactForm() {
             type="text"
             id="name"
             name="name"
-            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+            className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-sm sm:text-base"
             required
             disabled={isSubmitting}
           />
@@ -92,7 +92,7 @@ export default function ContactForm() {
         <div>
           <label 
             htmlFor="email" 
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-xs sm:text-sm font-medium text-gray-700 mb-1"
           >
             Email
           </label>
@@ -100,7 +100,7 @@ export default function ContactForm() {
             type="email"
             id="email"
             name="email"
-            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+            className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-sm sm:text-base"
             required
             disabled={isSubmitting}
           />
@@ -108,7 +108,7 @@ export default function ContactForm() {
         <div>
           <label 
             htmlFor="phone" 
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-xs sm:text-sm font-medium text-gray-700 mb-1"
           >
             Mobile Number
           </label>
@@ -118,30 +118,23 @@ export default function ContactForm() {
             name="phone"
             pattern="[0-9]{10}"
             placeholder="10-digit mobile number"
-            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+            className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-sm sm:text-base"
             required
             disabled={isSubmitting}
           />
         </div>
         <div>
-          <label 
-            htmlFor="subject" 
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-            Subject
-          </label>
           <CustomDropdown
+            label="Subject"
             options={subjectOptions}
             value={selectedSubject}
             onChange={setSelectedSubject}
-            placeholder="Select a subject"
-            disabled={isSubmitting}
           />
         </div>
         <div>
           <label 
             htmlFor="message" 
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-xs sm:text-sm font-medium text-gray-700 mb-1"
           >
             Message
           </label>
@@ -149,7 +142,7 @@ export default function ContactForm() {
             id="message"
             name="message"
             rows={3}
-            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+            className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-sm sm:text-base"
             required
             disabled={isSubmitting}
           />
@@ -157,7 +150,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-gradient-to-r from-rose-500 to-purple-500 text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+          className="w-full bg-gradient-to-r from-rose-500 to-purple-500 text-white py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50 text-sm sm:text-base"
         >
           {isSubmitting ? 'Sending...' : 'Send Message'}
         </button>

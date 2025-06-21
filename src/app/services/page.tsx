@@ -40,69 +40,93 @@ export default function Services() {
       
       <div className="pt-0">
         {/* Hero Section */}
-        <section className="relative h-[100vh] flex items-center">
-          <div className="absolute inset-0 grid grid-cols-3 gap-1">
-            <div className="relative h-full">
+        <section className="relative h-[80vh] sm:h-[80vh] lg:h-[100vh] flex items-center">
+          {/* Background Images */}
+          <div className="absolute inset-0">
+            {/* Mobile Background */}
+            <div className="relative h-full sm:hidden">
               <Image
                 src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1600&auto=format&fit=crop&q=80"
-                alt="Interior Painting"
+                alt="Professional Painting Services"
                 fill
                 className="object-cover"
                 priority
               />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
             </div>
-            <div className="relative h-full">
-              <Image
-                src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1600&auto=format&fit=crop&q=80"
-                alt="Exterior Painting"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div className="relative h-full">
-              <Image
-                src="https://images.unsplash.com/photo-1604187351574-c75ca79f5807?w=1600&auto=format&fit=crop&q=80"
-                alt="Commercial Painting"
-                fill
-                className="object-cover"
-                priority
-              />
+            
+            {/* Desktop Background Grid */}
+            <div className="hidden sm:grid grid-cols-3 h-full gap-1">
+              <div className="relative h-full">
+                <Image
+                  src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1600&auto=format&fit=crop&q=80"
+                  alt="Interior Painting"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
+              </div>
+              <div className="relative h-full">
+                <Image
+                  src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1600&auto=format&fit=crop&q=80"
+                  alt="Exterior Painting"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/50" />
+              </div>
+              <div className="relative h-full">
+                <Image
+                  src="https://images.unsplash.com/photo-1604187351574-c75ca79f5807?w=1600&auto=format&fit=crop&q=80"
+                  alt="Commercial Painting"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-l from-black/70 to-transparent" />
+              </div>
             </div>
           </div>
+          
+          {/* Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/80" />
-          <div className="relative container mx-auto px-6">
-            <div className="max-w-3xl">
-              <div className="inline-block bg-gradient-to-r from-rose-400 to-purple-500 px-4 py-1 rounded-full text-white text-sm font-medium mb-4 animate-fade-in">
+          
+          {/* Content */}
+          <div className="relative container mx-auto px-4 sm:px-6">
+            <div className="max-w-3xl pt-8 sm:pt-12 lg:pt-16">
+              <div className="inline-block bg-gradient-to-r from-rose-400 to-purple-500 px-3 sm:px-4 py-1 rounded-full text-white text-xs sm:text-sm font-medium mb-3 sm:mb-4 animate-fade-in">
                 Professional Painting Services
               </div>
-              <h1 className="text-6xl font-bold mb-6 text-white animate-fade-in leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white animate-fade-in leading-tight">
                 Transform Your Space with Expert Craftsmanship
               </h1>
-              <p className="text-xl mb-8 text-white/90 animate-fade-in">
+              <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-white/90 animate-fade-in">
                 From residential interiors to commercial exteriors, our professional team delivers excellence in every brushstroke. Experience the perfect blend of quality, expertise, and attention to detail.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3 sm:gap-4 mb-8 sm:mb-12">
                 <Link
                   href="/contact"
-                  className="inline-block bg-gradient-to-r from-rose-400 to-purple-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300 animate-bounce-in"
+                  className="inline-block bg-gradient-to-r from-rose-400 to-purple-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300 animate-bounce-in"
                 >
                   Get Free Quote
                 </Link>
-                
               </div>
-              <div className="mt-12 grid grid-cols-3 gap-8">
+              
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-4 sm:gap-8">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-white mb-2">15+</div>
-                  <div className="text-white/80">Years Experience</div>
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 sm:mb-2">15+</div>
+                  <div className="text-white/80 text-xs sm:text-sm">Years Experience</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-white mb-2">2500+</div>
-                  <div className="text-white/80">Projects Completed</div>
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 sm:mb-2">2500+</div>
+                  <div className="text-white/80 text-xs sm:text-sm">Projects Completed</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-white mb-2">98%</div>
-                  <div className="text-white/80">Client Satisfaction</div>
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 sm:mb-2">98%</div>
+                  <div className="text-white/80 text-xs sm:text-sm">Client Satisfaction</div>
                 </div>
               </div>
             </div>
@@ -110,40 +134,50 @@ export default function Services() {
         </section>
 
         {/* Services Grid */}
-        <section className="py-20">
-          <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
-              Our Premium Services
-            </h2>
-            <p className="text-xl text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-              Professional painting solutions for every project
-            </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <section className="py-12 sm:py-16 lg:py-20 bg-white">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
+                Our Premium Services
+              </h2>
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+                Professional painting solutions for every project with guaranteed quality and satisfaction
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
               {services.map((service) => (
                 <div
                   key={service.title}
-                  className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+                  className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
                 >
-                  <div className="relative h-48">
+                  <div className="relative h-48 sm:h-56">
                     <Image
                       src={service.image}
                       alt={service.title}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold mb-2 text-gray-900">{service.title}</h3>
+                  <div className="p-6 sm:p-8">
+                    <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-900">{service.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
+                      {service.description}
+                    </p>
                     
                     <div className="flex items-center justify-between">
-                      <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
+                      <span className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
                         {service.price}
                       </span>
                       <Link
                         href="/contact"
-                        className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                        className="text-sm sm:text-base font-medium text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-1"
                       >
-                        Get Quote →
+                        Get Quote 
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
                       </Link>
                     </div>
                   </div>
@@ -154,38 +188,46 @@ export default function Services() {
         </section>
 
         {/* Why Choose Us Section */}
-        <section className="pb-20 bg-gradient-to-b from-white to-gray-50">
-          <div className="container mx-auto px-6">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="relative h-[600px] rounded-2xl overflow-hidden">
+        <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-white to-gray-50">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 items-center">
+              <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-xl">
                 <Image
                   src="https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=800&auto=format&fit=crop&q=80"
                   alt="Professional Painters"
                   fill
                   className="object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               </div>
-              <div>
-                <h2 className="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
-                  Why Choose Shine Paints?
-                </h2>
-                <div className="grid grid-cols-2 gap-6">
+              
+              <div className="space-y-8 sm:space-y-10">
+                <div>
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
+                    Why Choose Shine Paints?
+                  </h2>
+                  <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                    We deliver exceptional painting services with unmatched quality, expertise, and customer satisfaction.
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                   {[
                     {
                       title: "Expert Paint Consulting",
                       description: "We help customers select the ideal paint based on their home's design, whether it's contemporary, traditional, or modern.",
                       icon: (
-                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                       )
                     },
                     {
-                      title: "Professional Painting Services ",
+                      title: "Professional Painting Services",
                       description: "To prevent fraudulent practices and ensure the highest quality, we provide professional painting services, guaranteeing the proper application of every coat.",
                       icon: (
-                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                         </svg>
                       )
                     },
@@ -193,55 +235,38 @@ export default function Services() {
                       title: "Exclusive Add-ons & Warranty",
                       description: "Our commitment doesn't end with a sale. We offer free water service for a year and free touch-ups on selected products, ensuring long-term satisfaction.",
                       icon: (
-                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       )
                     },
                     {
-                      title: "Honest Pricing & Transparency",
-                      description: "The paint industry often confuses customers with misleading quotations and low-quality alternatives. At Shine Paints, we openly discuss pricing, educate customers on product differences, and ensure they make informed choices.",
+                      title: "Quality Assurance",
+                      description: "Every project undergoes rigorous quality checks to ensure the highest standards of finish and durability.",
                       icon: (
-                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                        <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       )
                     }
-                  ].map((item) => (
-                    <div
-                      key={item.title}
-                      className="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-                    >
-                      <div className="w-14 h-14 bg-gradient-to-r from-rose-400/10 to-purple-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <div className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
-                          {item.icon}
-                        </div>
+                  ].map((feature, index) => (
+                    <div key={index} className="flex items-start space-x-4 sm:space-x-5">
+                      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-rose-400 to-purple-500 rounded-xl flex items-center justify-center text-white shadow-lg">
+                        {feature.icon}
                       </div>
-                      <h3 className="text-lg font-bold mb-2 text-gray-900 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-rose-400 group-hover:to-purple-500">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-600">{item.description}</p>
+                      <div className="flex-1">
+                        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">
+                          {feature.title}
+                        </h3>
+                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-rose-400 to-purple-500">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-4xl font-bold mb-8 text-white animate-fade-in">Ready to Transform Your Space?</h2>
-            <p className="text-xl mb-12 text-white/90 max-w-2xl mx-auto animate-fade-in">
-              Contact us today for a free consultation and quote. Let our experts help you bring your vision to life.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-block bg-white text-white bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300 animate-bounce-in border-2 border-white hover:border-rose-400"
-            >
-              Get Started
-            </Link>
           </div>
         </section>
       </div>

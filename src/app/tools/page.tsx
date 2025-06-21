@@ -54,7 +54,7 @@ export default function Tools() {
     },
     {
       name: "Complete Painter's Kit",
-      image: "https://images.unsplash.com/photo-1572269951301-d623321c9595?w=800&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80",
       price: "₹89.99"
     },
     {
@@ -74,7 +74,7 @@ export default function Tools() {
     },
     {
       name: "Paint Edger",
-      image: "https://images.unsplash.com/photo-1572269951301-d623321c9595?w=800&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&auto=format&fit=crop&q=80",
       price: "₹34.99"
     }
   ];
@@ -85,9 +85,9 @@ export default function Tools() {
       
       <div className="pt-0">
         {/* Hero Section */}
-        <section className="relative h-[100vh] flex items-center">
+        <section className="relative h-[60vh] sm:h-[80vh] lg:h-[100vh] flex items-center">
           <div className="absolute inset-0">
-            <div className="grid grid-cols-2 h-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
               <div className="relative h-full">
                 <Image
                   src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&auto=format&fit=crop&q=80"
@@ -98,7 +98,7 @@ export default function Tools() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
               </div>
-              <div className="grid grid-rows-2 h-full">
+              <div className="hidden lg:grid grid-rows-2 h-full">
                 <div className="relative">
                   <Image
                     src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1600&auto=format&fit=crop&q=80"
@@ -111,7 +111,7 @@ export default function Tools() {
                 </div>
                 <div className="relative">
                   <Image
-                    src="https://images.unsplash.com/photo-1572269951301-d623321c9595?w=1600&auto=format&fit=crop&q=80"
+                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&auto=format&fit=crop&q=80"
                     alt="Paint Supplies"
                     fill
                     className="object-cover"
@@ -123,15 +123,15 @@ export default function Tools() {
             </div>
           </div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
-          <div className="relative container mx-auto px-6">
+          <div className="relative container mx-auto px-4 sm:px-6">
             <div className="max-w-3xl">
               <div className="inline-block bg-gradient-to-r from-rose-400 to-purple-500 px-4 py-1 rounded-full text-white text-sm font-medium mb-4 animate-fade-in">
                 Professional Equipment
               </div>
-              <h1 className="text-6xl whitespace-nowrap font-bold mb-6 text-white animate-fade-in leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white animate-fade-in leading-tight">
                 Professional Tools & Resources
               </h1>
-              <p className="text-xl mb-8 text-white/90 animate-fade-in">
+              <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-white/90 animate-fade-in">
                 Equip yourself with premium painting tools and innovative digital solutions. From professional-grade brushes to smart color visualization tools, we provide everything you need for a perfect finish.
               </p>
             </div>
@@ -139,21 +139,21 @@ export default function Tools() {
         </section>
 
         {/* Professional Tools Section */}
-        <section className="py-20">
-          <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
+        <section className="py-12 sm:py-16 lg:py-20">
+          <div className="container mx-auto px-4 sm:px-6">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
               Professional Tools
             </h2>
-            <p className="text-xl text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 text-center mb-8 sm:mb-12 max-w-2xl mx-auto">
               Quality painting tools for professional results
             </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {paintingTools.map((tool) => (
                 <div
                   key={tool.name}
-                  className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+                  className="group bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
                 >
-                  <div className="relative h-48">
+                  <div className="relative h-40 sm:h-48">
                     <Image
                       src={tool.image}
                       alt={tool.name}
@@ -161,9 +161,9 @@ export default function Tools() {
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold mb-2 text-gray-900">{tool.name}</h3>
-                    <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-base sm:text-lg font-bold mb-2 text-gray-900">{tool.name}</h3>
+                    <span className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
                       {tool.price}
                     </span>
                   </div>
@@ -174,15 +174,15 @@ export default function Tools() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-rose-400 to-purple-500">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-4xl font-bold mb-8 text-white animate-fade-in">Need Expert Advice?</h2>
-            <p className="text-xl mb-12 text-white/90 max-w-2xl mx-auto animate-fade-in">
+        <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-rose-400 to-purple-500">
+          <div className="container mx-auto px-4 sm:px-6 text-center">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-white animate-fade-in">Need Expert Advice?</h2>
+            <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 text-white/90 max-w-2xl mx-auto animate-fade-in">
               Our team is here to help you choose the right tools for your project. Get in touch with us today.
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-white text-white bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300 animate-bounce-in border-2 border-white hover:border-rose-400"
+              className="inline-block bg-white text-white bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300 animate-bounce-in border-2 border-white hover:border-rose-400"
             >
               Contact Us
             </Link>

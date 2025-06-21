@@ -33,15 +33,15 @@ export default function CustomDropdown({
 
   return (
     <div className={`relative ${className}`} ref={dropdownRef}>
-      <h3 className="text-sm font-medium text-gray-700 mb-2">{label}</h3>
+      <h3 className="text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">{label}</h3>
       <button
         type="button"
-        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 flex items-center justify-between bg-white"
+        className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 flex items-center justify-between bg-white text-sm sm:text-base"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="text-gray-900">{value}</span>
+        <span className="text-gray-900 truncate">{value || 'Select an option'}</span>
         <svg
-          className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${
+          className={`w-4 h-4 sm:w-5 sm:h-5 text-gray-500 transition-transform duration-200 flex-shrink-0 ${
             isOpen ? 'rotate-180' : ''
           }`}
           fill="none"
@@ -62,7 +62,7 @@ export default function CustomDropdown({
           {options.map((option) => (
             <button
               key={option}
-              className={`w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors ${
+              className={`w-full px-3 sm:px-4 py-2 text-left hover:bg-gray-50 transition-colors text-sm sm:text-base ${
                 value === option ? 'bg-rose-50 text-rose-600' : 'text-gray-900'
               }`}
               onClick={() => {

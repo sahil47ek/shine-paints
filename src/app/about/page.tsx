@@ -105,7 +105,7 @@ export default function About() {
         <Navbar />
 
         {/* Hero Section */}
-        <section className="relative h-[60vh] min-h-[100vh] pt-10">
+        <section className="relative h-[60vh] sm:h-[80vh] lg:min-h-[100vh] pt-10">
           <div className="absolute inset-0">
             <Image
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80"
@@ -117,12 +117,12 @@ export default function About() {
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
           </div>
           <div className="relative h-full flex items-center">
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-4 sm:px-6">
               <div className="max-w-3xl text-white">
-                <h1 className="text-4xl font-bold mb-6">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
                   Our Story
                 </h1>
-                <p className="text-xl text-gray-100">
+                <p className="text-base sm:text-lg md:text-xl text-gray-100">
                   We're passionate about bringing color and life to your spaces through premium quality paints and expert consultation.
                 </p>
               </div>
@@ -131,32 +131,32 @@ export default function About() {
         </section>
 
         {/* Mission & Vision Section */}
-        <section className="relative py-20 bg-white">
-          <div className="container mx-auto px-6">
-            <div className="grid md:grid-cols-2 gap-16">
+        <section className="relative py-12 sm:py-16 lg:py-20 bg-white">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="grid md:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
               {/* Vision */}
-              <div className="bg-gradient-to-br from-rose-50 to-purple-50 rounded-2xl p-8 shadow-lg">
-                <div className="w-12 h-12 bg-rose-100 rounded-lg flex items-center justify-center text-rose-600 mb-6">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-gradient-to-br from-rose-50 to-purple-50 rounded-2xl p-6 sm:p-8 shadow-lg">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-rose-100 rounded-lg flex items-center justify-center text-rose-600 mb-4 sm:mb-6">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                   </svg>
                 </div>
-                <h2 className="text-4xl font-bold mb-4 text-gray-900">Our Vision</h2>
-                <p className="text-gray-600 italic">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-gray-900">Our Vision</h2>
+                <p className="text-sm sm:text-base text-gray-600 italic">
                   "To build a trusted, customer-friendly paint brand across India, offering high-quality products and expert services that cater to all budget segments. We aim to redefine the paint industry by ensuring transparency, innovation, and lifetime trust with our customers."
                 </p>
               </div>
 
               {/* Mission */}
-              <div className="bg-gradient-to-br from-purple-50 to-rose-50 rounded-2xl p-8 shadow-lg">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-6">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-gradient-to-br from-purple-50 to-rose-50 rounded-2xl p-6 sm:p-8 shadow-lg">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-4 sm:mb-6">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
-                <h2 className="text-4xl font-bold mb-4 text-gray-900">Our Mission</h2>
-                <p className="text-gray-600 italic">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-gray-900">Our Mission</h2>
+                <p className="text-sm sm:text-base text-gray-600 italic">
                   "At Shine Paints, we don't just sell paint; we provide expertise, trust, and quality. Our mission is to educate customers, eliminate fraudulent practices, and offer end-to-end painting solutions with honest pricing. By continuously innovating and expanding, we strive to make Shine Paints the go-to choice for homeowners and businesses across the country."
                 </p>
               </div>
@@ -165,7 +165,7 @@ export default function About() {
         </section>
 
         {/* Values Section */}
-        <section className="relative pb-20">
+        <section className="relative pb-12 sm:pb-16 lg:pb-20">
           <div className="absolute inset-0">
             <Image
               src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=2000&q=80"
@@ -175,19 +175,19 @@ export default function About() {
             />
             <div className="absolute inset-0 bg-gradient-to-b from-white/95 to-white/90"></div>
           </div>
-          <div className="container mx-auto px-6 relative">
-            <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">Our Values</h2>
-            <div className="grid md:grid-cols-3 gap-12">
+          <div className="container mx-auto px-4 sm:px-6 relative">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 text-center text-gray-900">Our Values</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
               {values.map((value, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
+                  className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-6">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-4 sm:mb-6">
                     {value.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-gray-900">{value.title}</h3>
-                  <p className="text-gray-600">{value.description}</p>
+                  <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-gray-900">{value.title}</h3>
+                  <p className="text-sm sm:text-base text-gray-600">{value.description}</p>
                 </div>
               ))}
             </div>
@@ -195,35 +195,35 @@ export default function About() {
         </section>
 
         {/* Team Section */}
-        <section className="relative py-20 bg-gray-50 hidden">
+        <section className="relative py-12 sm:py-16 lg:py-20 bg-gray-50 hidden">
           <div className="absolute inset-0">
             <Image
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=2000&q=80"
-              alt="Team Working"
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=2000&q=80"
+              alt="Team Collaboration"
               fill
               className="object-cover opacity-5"
             />
           </div>
-          <div className="container mx-auto px-6 relative">
-            <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">Meet Our Team</h2>
-            <div className="grid md:grid-cols-3 gap-12">
+          <div className="container mx-auto px-4 sm:px-6 relative">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 text-center text-gray-900">Meet Our Team</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {teamMembers.map((member, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  <div className="relative h-80">
+                  <div className="relative h-48 sm:h-56">
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
-                      className="object-cover transition-transform group-hover:scale-105"
+                      className="object-cover"
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 text-gray-900">{member.name}</h3>
-                    <p className="text-purple-600 font-medium mb-4">{member.role}</p>
-                    <p className="text-gray-600">{member.description}</p>
+                    <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900">{member.name}</h3>
+                    <p className="text-sm sm:text-base text-purple-600 font-medium mb-3">{member.role}</p>
+                    <p className="text-sm sm:text-base text-gray-600">{member.description}</p>
                   </div>
                 </div>
               ))}
@@ -231,28 +231,25 @@ export default function About() {
           </div>
         </section>
 
-        {/* Contact CTA */}
-        <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0">
-            <Image
-              src="https://images.unsplash.com/photo-1577401239170-897942555fb3?auto=format&fit=crop&w=2000&q=80"
-              alt="Paint Expert"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/90 to-rose-500/90 mix-blend-multiply"></div>
-          </div>
-          <div className="container mx-auto px-6 relative">
-            <div className="max-w-3xl mx-auto text-center text-white">
-              <h2 className="text-4xl font-bold mb-8">Ready to Transform Your Space?</h2>
-              <p className="text-xl mb-12 text-white/90">
-                Our team of experts is here to help you bring your vision to life.
-              </p>
+        {/* CTA Section */}
+        <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-rose-400 to-purple-500">
+          <div className="container mx-auto px-4 sm:px-6 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-white">Ready to Transform Your Space?</h2>
+            <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 text-white/90 max-w-2xl mx-auto">
+              Let our expert team help you choose the perfect colors and finishes for your project.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="inline-block bg-white text-gray-900 px-8 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-opacity"
+                className="inline-block bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300"
               >
-                Get in Touch
+                Get Free Consultation
+              </Link>
+              <Link
+                href="/products"
+                className="inline-block border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300"
+              >
+                Explore Products
               </Link>
             </div>
           </div>

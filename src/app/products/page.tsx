@@ -125,7 +125,7 @@ export default function Products() {
 
       <div className="pt-0">
         {/* Hero Section */}
-        <section className="relative pt-32 pb-20">
+        <section className="relative pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20">
           <div className="absolute inset-0 z-0">
             <Image
               src="/product-banner.jpeg"
@@ -136,29 +136,29 @@ export default function Products() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/50 to-black/60" />
           </div>
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-4 sm:px-6 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
-              <div className="inline-block px-4 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white mb-6">
+              <div className="inline-block px-3 sm:px-4 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs sm:text-sm font-medium text-white mb-4 sm:mb-6">
                 Explore Our Collection
               </div>
-              <h1 className="text-5xl font-bold mb-6 text-white">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-white leading-tight">
                 Premium Paint Collection
               </h1>
-              <p className="text-xl text-white/90 mb-8">
+              <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8">
                 Discover our extensive range of high-quality paints and finishes for every surface. From interior elegance to exterior durability, find the perfect solution for your space.
               </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                  <div className="text-white/80 text-sm">Products</div>
-                  <div className="text-white text-2xl font-bold">{products.length}+</div>
+              <div className="flex flex-wrap gap-3 sm:gap-4 justify-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 sm:px-6 py-2 sm:py-3">
+                  <div className="text-white/80 text-xs sm:text-sm">Products</div>
+                  <div className="text-white text-lg sm:text-xl lg:text-2xl font-bold">{products.length}+</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                  <div className="text-white/80 text-sm">Categories</div>
-                  <div className="text-white text-2xl font-bold">{categories.length}</div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 sm:px-6 py-2 sm:py-3">
+                  <div className="text-white/80 text-xs sm:text-sm">Categories</div>
+                  <div className="text-white text-lg sm:text-xl lg:text-2xl font-bold">{categories.length}</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                  <div className="text-white/80 text-sm">Best Sellers</div>
-                  <div className="text-white text-2xl font-bold">{products.filter(p => p.isBestSeller).length}</div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 sm:px-6 py-2 sm:py-3">
+                  <div className="text-white/80 text-xs sm:text-sm">Best Sellers</div>
+                  <div className="text-white text-lg sm:text-xl lg:text-2xl font-bold">{products.filter(p => p.isBestSeller).length}</div>
                 </div>
               </div>
             </div>
@@ -169,27 +169,27 @@ export default function Products() {
         <BestSellers />
 
         {/* Search and Filter Section */}
-        <section className="py-12 bg-gray-50 sticky top-20 z-10">
-          <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <section className="py-8 sm:py-10 lg:py-12 bg-gray-50 sticky top-16 sm:top-20 z-10">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {/* Search Input */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+              <div className="sm:col-span-2 lg:col-span-1">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                   Search Products
                 </label>
-                <input
-                  type="text"
+                  <input
+                    type="text"
                   placeholder="Search by product name or brand..."
-                  value={searchQuery}
+                    value={searchQuery}
                   onChange={handleSearchChange}
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent text-sm sm:text-base"
                   aria-label="Search products by name or brand"
                 />
               </div>
 
               {/* Category Dropdown */}
               <div className="dropdown-container">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                   Category
                 </label>
                 <div className="relative">
@@ -199,13 +199,13 @@ export default function Products() {
                       setIsBrandOpen(false);
                       setIsCategoryOpen(!isCategoryOpen);
                     }}
-                    className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent hover:border-gray-400 transition-colors flex items-center justify-between"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent hover:border-gray-400 transition-colors flex items-center justify-between text-sm sm:text-base"
                   >
-                    <span className="text-gray-700">
+                    <span className="text-gray-700 truncate">
                       {selectedCategory === 'All' ? 'All Categories' : selectedCategory}
                     </span>
                     <svg
-                      className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
+                      className={`w-4 h-4 sm:w-5 sm:h-5 text-gray-400 transition-transform duration-200 flex-shrink-0 ${
                         isCategoryOpen ? 'transform rotate-180' : ''
                       }`}
                       fill="none"
@@ -226,13 +226,13 @@ export default function Products() {
                               setSelectedCategory(category);
                               setIsCategoryOpen(false);
                             }}
-                            className={`w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors flex items-center justify-between ${
+                            className={`w-full px-3 sm:px-4 py-2 text-left hover:bg-gray-50 transition-colors flex items-center justify-between text-sm sm:text-base ${
                               selectedCategory === category ? 'bg-rose-50 text-rose-600 font-medium' : 'text-gray-700'
                             }`}
                           >
-                            <span>{category}</span>
+                            <span className="truncate">{category}</span>
                             {selectedCategory === category && (
-                              <svg className="w-5 h-5 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-rose-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                               </svg>
                             )}
@@ -246,7 +246,7 @@ export default function Products() {
 
               {/* Brand Dropdown */}
               <div className="dropdown-container">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                   Brand
                 </label>
                 <div className="relative">
@@ -256,13 +256,13 @@ export default function Products() {
                       setIsSortOpen(false);
                       setIsBrandOpen(!isBrandOpen);
                     }}
-                    className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent hover:border-gray-400 transition-colors flex items-center justify-between"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent hover:border-gray-400 transition-colors flex items-center justify-between text-sm sm:text-base"
                   >
-                    <span className="text-gray-700">
+                    <span className="text-gray-700 truncate">
                       {selectedBrand === 'All' ? 'All Brands' : selectedBrand}
                     </span>
                     <svg
-                      className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
+                      className={`w-4 h-4 sm:w-5 sm:h-5 text-gray-400 transition-transform duration-200 flex-shrink-0 ${
                         isBrandOpen ? 'transform rotate-180' : ''
                       }`}
                       fill="none"
@@ -283,13 +283,13 @@ export default function Products() {
                               setSelectedBrand(brand);
                               setIsBrandOpen(false);
                             }}
-                            className={`w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors flex items-center justify-between ${
+                            className={`w-full px-3 sm:px-4 py-2 text-left hover:bg-gray-50 transition-colors flex items-center justify-between text-sm sm:text-base ${
                               selectedBrand === brand ? 'bg-rose-50 text-rose-600 font-medium' : 'text-gray-700'
                             }`}
                           >
-                            <span>{brand}</span>
+                            <span className="truncate">{brand}</span>
                             {selectedBrand === brand && (
-                              <svg className="w-5 h-5 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-rose-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                               </svg>
                             )}
@@ -303,7 +303,7 @@ export default function Products() {
 
               {/* Sort Dropdown */}
               <div className="dropdown-container">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                   Sort by
                 </label>
                 <div className="relative">
@@ -313,11 +313,11 @@ export default function Products() {
                       setIsBrandOpen(false);
                       setIsSortOpen(!isSortOpen);
                     }}
-                    className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent hover:border-gray-400 transition-colors flex items-center justify-between"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent hover:border-gray-400 transition-colors flex items-center justify-between text-sm sm:text-base"
                   >
-                    <span className="text-gray-700">{getSortLabel()}</span>
+                    <span className="text-gray-700 truncate">{getSortLabel()}</span>
                     <svg
-                      className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
+                      className={`w-4 h-4 sm:w-5 sm:h-5 text-gray-400 transition-transform duration-200 flex-shrink-0 ${
                         isSortOpen ? 'transform rotate-180' : ''
                       }`}
                       fill="none"
@@ -338,16 +338,16 @@ export default function Products() {
                               setSortBy(option.value as 'name' | 'price-low' | 'price-high');
                               setIsSortOpen(false);
                             }}
-                            className={`w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors flex items-center justify-between ${
+                            className={`w-full px-3 sm:px-4 py-2 text-left hover:bg-gray-50 transition-colors flex items-center justify-between text-sm sm:text-base ${
                               sortBy === option.value ? 'bg-rose-50 text-rose-600 font-medium' : 'text-gray-700'
                             }`}
                           >
                             <div className="flex items-center gap-2">
                               <span className="w-6 text-center text-sm">{option.icon}</span>
-                              <span>{option.label}</span>
+                              <span className="truncate">{option.label}</span>
                             </div>
                             {sortBy === option.value && (
-                              <svg className="w-5 h-5 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-rose-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                               </svg>
                             )}
@@ -361,7 +361,7 @@ export default function Products() {
             </div>
 
             {/* Results count */}
-            <div className="mt-4 text-sm text-gray-600">
+            <div className="mt-4 text-xs sm:text-sm text-gray-600">
               {searchQuery ? (
                 <span>
                   Found {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} matching "{searchQuery}" 
@@ -375,17 +375,17 @@ export default function Products() {
         </section>
 
         {/* Products Grid */}
-        <section className="py-12">
-          <div className="container mx-auto px-6">
+        <section className="py-8 sm:py-10 lg:py-12">
+          <div className="container mx-auto px-4 sm:px-6">
             {filteredProducts.length === 0 ? (
-              <div className="text-center py-12">
-                <div className="mb-6">
-                  <svg className="w-16 h-16 text-gray-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="text-center py-8 sm:py-12">
+                <div className="mb-4 sm:mb-6">
+                  <svg className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-                <p className="text-gray-600 mb-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">No products found</h3>
+                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
                   {searchQuery 
                     ? `No products match "${searchQuery}". Try adjusting your search terms or filters.`
                     : 'No products match your current filters. Try adjusting your selection.'
@@ -397,56 +397,56 @@ export default function Products() {
                     setSelectedCategory('All');
                     setSelectedBrand('All');
                   }}
-                  className="px-6 py-2 bg-gradient-to-r from-rose-500 to-purple-500 text-white rounded-lg hover:shadow-lg transition-all duration-300"
+                  className="px-4 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-rose-500 to-purple-500 text-white rounded-lg hover:shadow-lg transition-all duration-300 text-sm sm:text-base"
                 >
                   Clear All Filters
                 </button>
-              </div>
+                          </div>
             ) : (
               <>
-                <div id="products-section" className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <div id="products-section" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
                   {currentProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
-                  ))}
-                </div>
+              ))}
+            </div>
 
-                {/* Pagination */}
-                {totalPages > 1 && (
-                  <div className="mt-12 flex justify-center gap-2">
-                    <button
-                      onClick={() => handlePageChange(currentPage - 1)}
-                      disabled={currentPage === 1}
-                      className="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      Previous
-                    </button>
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
-                      <button
-                        key={pageNumber}
-                        onClick={() => handlePageChange(pageNumber)}
-                        className={`px-4 py-2 rounded-lg ${
-                          currentPage === pageNumber
-                            ? 'bg-gradient-to-r from-rose-500 to-purple-500 text-white'
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
-                      >
-                        {pageNumber}
-                      </button>
-                    ))}
-                    <button
-                      onClick={() => handlePageChange(currentPage + 1)}
-                      disabled={currentPage === totalPages}
-                      className="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      Next
-                    </button>
-                  </div>
-                )}
+            {/* Pagination */}
+            {totalPages > 1 && (
+                  <div className="mt-8 sm:mt-12 flex justify-center gap-1 sm:gap-2">
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                      className="px-3 sm:px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                >
+                  Previous
+                </button>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+                  <button
+                    key={pageNumber}
+                    onClick={() => handlePageChange(pageNumber)}
+                        className={`px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base ${
+                      currentPage === pageNumber
+                        ? 'bg-gradient-to-r from-rose-500 to-purple-500 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {pageNumber}
+                  </button>
+                ))}
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                      className="px-3 sm:px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                >
+                  Next
+                </button>
+              </div>
+            )}
 
-                {/* Results count */}
-                <div className="mt-6 text-center text-sm text-gray-600">
-                  Showing {indexOfFirstProduct + 1} to {Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length} products
-                </div>
+            {/* Results count */}
+                <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-gray-600">
+              Showing {indexOfFirstProduct + 1} to {Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length} products
+            </div>
               </>
             )}
           </div>
