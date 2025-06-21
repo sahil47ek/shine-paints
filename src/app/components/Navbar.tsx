@@ -22,6 +22,9 @@ export default function Navbar() {
       }
     };
 
+    // Initialize scroll state immediately
+    handleScroll();
+
     window.addEventListener('scroll', handleScroll);
     document.addEventListener('mousedown', handleClickOutside);
 
@@ -34,8 +37,19 @@ export default function Navbar() {
   const dropdownMenus = {
     products: [
       {
+        name: 'Best Sellers',
+        href: '/products?category=Best Sellers',
+        description: 'Our most popular paint products',
+        icon: (
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+          </svg>
+        ),
+        featured: true
+      },
+      {
         name: 'Interior Paints',
-        href: '/products/interior',
+        href: '/products?category=Interior',
         description: 'Premium wall paints for every room',
         icon: (
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -46,7 +60,7 @@ export default function Navbar() {
       },
       {
         name: 'Exterior Paints',
-        href: '/products/exterior',
+        href: '/products?category=Exterior',
         description: 'Weather-resistant outdoor finishes',
         icon: (
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,68 +70,15 @@ export default function Navbar() {
         featured: true
       },
       {
-        name: 'Specialty Finishes',
-        href: '/products/specialty',
-        description: 'Unique textures and effects',
+        name: 'Waterproofing',
+        href: '/products?category=Waterproofing',
+        description: 'Protective coatings and sealants',
         icon: (
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4.586a1 1 0 01.707.293l7.414 7.414a1 1 0 01.293.707V17a4 4 0 01-4 4H7z" />
-          </svg>
-        )
-      },
-      {
-        name: 'Color Collections',
-        href: '/products/collections',
-        description: 'Curated palettes for any style',
-        icon: (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4.586a1 1 0 01.707.293l7.414 7.414a1 1 0 01.293.707V17a4 4 0 01-4 4H7z" />
-          </svg>
-        )
-      }
-    ],
-    services: [
-      {
-        name: 'Interior Painting',
-        href: '/services/interior',
-        description: 'Professional indoor painting services',
-        icon: (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
           </svg>
         ),
         featured: true
-      },
-      {
-        name: 'Exterior Painting',
-        href: '/services/exterior',
-        description: 'Complete outdoor painting solutions',
-        icon: (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-          </svg>
-        ),
-        featured: true
-      },
-      {
-        name: 'Color Consultation',
-        href: '/services/consultation',
-        description: 'Expert color selection advice',
-        icon: (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4.586a1 1 0 01.707.293l7.414 7.414a1 1 0 01.293.707V17a4 4 0 01-4 4H7z" />
-          </svg>
-        )
-      },
-      {
-        name: 'Commercial Services',
-        href: '/services/commercial',
-        description: 'Large-scale project solutions',
-        icon: (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-          </svg>
-        )
       }
     ],
     tools: [
@@ -187,7 +148,7 @@ export default function Navbar() {
                 src={scrolled ? '/logo-white.jpg' : '/logo-black.jpg'}
                 alt="Shine Paints Logo"
                 fill
-                className="object-contain transition-opacity duration-300"
+                className={`object-contain transition-all duration-300`}
                 priority
               />
             </div>
@@ -304,94 +265,15 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Services Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => toggleDropdown('services')}
-                className={`flex items-center space-x-1 ${
-                  scrolled ? 'text-gray-900' : 'text-white'
-                } hover:opacity-80 transition-opacity text-base font-medium`}
-              >
-                <span>SERVICES</span>
-                <svg
-                  className={`w-4 h-4 transition-transform ${
-                    activeDropdown === 'services' ? 'rotate-180' : ''
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-
-              {/* Services Dropdown Menu */}
-              {activeDropdown === 'services' && (
-                <div className="absolute left-0 right-0 mt-7">
-                  <div className={`${
-                    scrolled 
-                      ? 'bg-white/100 backdrop-blur-md' 
-                      : 'bg-black/90 backdrop-blur-sm'
-                  } border-t border-gray-100/20 w-screen fixed left-0`}>
-                    <div className="container mx-auto px-6">
-                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-8">
-                        {dropdownMenus.services.map((item) => (
-                          <Link
-                            key={item.name}
-                            href={item.href}
-                            className={`flex items-start space-x-4 p-4 rounded-xl ${
-                              scrolled 
-                                ? 'hover:bg-black/5' 
-                                : 'hover:bg-white/10'
-                            } transition-colors w-full group cursor-pointer`}
-                          >
-                            <div className="flex items-start space-x-4 w-full">
-                              <div className="flex-shrink-0">
-                                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                                  scrolled
-                                    ? 'bg-gradient-to-r from-rose-400/10 to-purple-500/10'
-                                    : 'bg-white/10'
-                                }`}>
-                                  <div className={scrolled 
-                                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500'
-                                    : 'text-white'
-                                  }>
-                                    {item.icon}
-                                  </div>
-                                </div>
-                              </div>
-                              <div>
-                                <h3 className={`font-medium ${scrolled ? 'text-gray-900' : 'text-white'}`}>
-                                  {item.name}
-                                </h3>
-                                <p className={`text-sm ${scrolled ? 'text-gray-500' : 'text-white/70'}`}>
-                                  {item.description}
-                                </p>
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                      <div className={`py-4 border-t ${scrolled ? 'border-gray-100' : 'border-white/10'}`}>
-                        <Link
-                          href="/services"
-                          className={`flex items-center text-sm font-medium ${
-                            scrolled 
-                              ? 'text-rose-500 hover:text-purple-500' 
-                              : 'text-white hover:text-white/80'
-                          } transition-colors`}
-                        >
-                          View all services
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
+            {/* Services Link */}
+            <Link
+              href="/services"
+              className={`${
+                scrolled ? 'text-gray-900' : 'text-white'
+              } hover:opacity-80 transition-opacity text-base font-medium`}
+            >
+              SERVICES
+            </Link>
 
             {/* Tools Dropdown */}
             <div className="relative">

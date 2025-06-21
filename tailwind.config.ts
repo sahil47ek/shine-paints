@@ -12,6 +12,15 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(calc(-100% + 120px))' }
+        }
+      },
+      animation: {
+        marquee: 'marquee 8s ease-in-out infinite'
+      }
     },
   },
   plugins: [],

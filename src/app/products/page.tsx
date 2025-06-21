@@ -3,24 +3,35 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useAppSelector } from '../../store/hooks';
 import { selectAllProducts, selectCategories, selectBrands } from '../../store/productSlice';
 import Navbar from '../components/Navbar';
 import BestSellers from '../components/BestSellers';
+import ProductCard from '../components/ProductCard';
 
 export default function Products() {
+  const searchParams = useSearchParams();
   const products = useAppSelector(selectAllProducts);
-  const categories = ['All', 'Interior', 'Exterior', 'Waterproofing'];
+  const categories = ['All', 'Best Sellers', 'Interior', 'Exterior', 'Waterproofing'];
   const brands = ['All', 'Asian Paints', 'Jotun Paint', 'Ezdee Paint', 'MRF', 'Birla Oppus', 'JK', 'Dr Fixit', 'Indigo'];
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedBrand, setSelectedBrand] = useState<string>('All');
-  const [sortBy, setSortBy] = useState<'name' | 'price'>('name');
+  const [sortBy, setSortBy] = useState<'name' | 'price-low' | 'price-high'>('name');
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isBrandOpen, setIsBrandOpen] = useState(false);
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
+
+  // Handle URL parameters on component mount
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    if (categoryParam && categories.includes(categoryParam)) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [searchParams, categories]);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -37,19 +48,47 @@ export default function Products() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Reset pagination when search query, category, or brand changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedCategory, selectedBrand]);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
   // Filter and sort products
   const filteredProducts = products
-    .filter(product => 
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (selectedCategory === 'All' || product.category === selectedCategory) &&
-      (selectedBrand === 'All' || product.brand === selectedBrand)
-    )
+    .filter(product => {
+      // Enhanced search functionality
+      const searchTerm = searchQuery.toLowerCase().trim();
+      const productName = product.name.toLowerCase().trim();
+      const productBrand = product.brand.toLowerCase().trim();
+      
+      const matchesSearch = searchTerm === '' || 
+        productName.includes(searchTerm) ||
+        productBrand.includes(searchTerm);
+      
+      let matchesCategory = selectedCategory === 'All';
+      
+      if (selectedCategory === 'Best Sellers') {
+        matchesCategory = product.isBestSeller === true;
+      } else if (selectedCategory !== 'All') {
+        matchesCategory = product.category === selectedCategory;
+      }
+      
+      const matchesBrand = selectedBrand === 'All' || product.brand === selectedBrand;
+      
+      return matchesSearch && matchesCategory && matchesBrand;
+    })
     .sort((a, b) => {
       switch (sortBy) {
         case 'name':
           return a.name.localeCompare(b.name);
-        case 'price':
-          return a.price - b.price;
+        case 'price-low':
+          return a.basePrice - b.basePrice;
+        case 'price-high':
+          return b.basePrice - a.basePrice;
         default:
           return 0;
       }
@@ -72,7 +111,8 @@ export default function Products() {
 
   const sortOptions = [
     { value: 'name', label: 'Name (A-Z)', icon: '↑↓' },
-    { value: 'price', label: 'Price (Low to High)', icon: '↑' },
+    { value: 'price-low', label: 'Price (Low to High)', icon: '↑' },
+    { value: 'price-high', label: 'Price (High to Low)', icon: '↓' },
   ];
 
   const getSortLabel = () => {
@@ -137,12 +177,13 @@ export default function Products() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Search Products
                 </label>
-                  <input
-                    type="text"
-                  placeholder="Search by name..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                <input
+                  type="text"
+                  placeholder="Search by product name or brand..."
+                  value={searchQuery}
+                  onChange={handleSearchChange}
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent"
+                  aria-label="Search products by name or brand"
                 />
               </div>
 
@@ -158,7 +199,7 @@ export default function Products() {
                       setIsBrandOpen(false);
                       setIsCategoryOpen(!isCategoryOpen);
                     }}
-                    className="w-full px-4 py-2 bg-white border rounded-lg focus:ring-2 focus:ring-rose-400 flex items-center justify-between"
+                    className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent hover:border-gray-400 transition-colors flex items-center justify-between"
                   >
                     <span className="text-gray-700">
                       {selectedCategory === 'All' ? 'All Categories' : selectedCategory}
@@ -176,9 +217,8 @@ export default function Products() {
                   </button>
                   
                   {isCategoryOpen && (
-                    <div className="absolute z-20 w-full mt-1 bg-white border rounded-lg shadow-lg">
+                    <div className="absolute z-20 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
                       <div className="py-1 max-h-60 overflow-auto">
-                       
                         {categories.map(category => (
                           <button
                             key={category}
@@ -186,13 +226,13 @@ export default function Products() {
                               setSelectedCategory(category);
                               setIsCategoryOpen(false);
                             }}
-                            className={`w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center justify-between ${
-                              selectedCategory === category ? 'bg-rose-50 text-rose-600' : 'text-gray-700'
+                            className={`w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors flex items-center justify-between ${
+                              selectedCategory === category ? 'bg-rose-50 text-rose-600 font-medium' : 'text-gray-700'
                             }`}
                           >
                             <span>{category}</span>
                             {selectedCategory === category && (
-                              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                              <svg className="w-5 h-5 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                               </svg>
                             )}
@@ -216,7 +256,7 @@ export default function Products() {
                       setIsSortOpen(false);
                       setIsBrandOpen(!isBrandOpen);
                     }}
-                    className="w-full px-4 py-2 bg-white border rounded-lg focus:ring-2 focus:ring-rose-400 flex items-center justify-between"
+                    className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent hover:border-gray-400 transition-colors flex items-center justify-between"
                   >
                     <span className="text-gray-700">
                       {selectedBrand === 'All' ? 'All Brands' : selectedBrand}
@@ -234,9 +274,8 @@ export default function Products() {
                   </button>
                   
                   {isBrandOpen && (
-                    <div className="absolute z-20 w-full mt-1 bg-white border rounded-lg shadow-lg">
-                      <div className="py-1">
-                        
+                    <div className="absolute z-20 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
+                      <div className="py-1 max-h-60 overflow-auto">
                         {brands.map(brand => (
                           <button
                             key={brand}
@@ -244,13 +283,13 @@ export default function Products() {
                               setSelectedBrand(brand);
                               setIsBrandOpen(false);
                             }}
-                            className={`w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center justify-between ${
-                              selectedBrand === brand ? 'bg-rose-50 text-rose-600' : 'text-gray-700'
+                            className={`w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors flex items-center justify-between ${
+                              selectedBrand === brand ? 'bg-rose-50 text-rose-600 font-medium' : 'text-gray-700'
                             }`}
                           >
                             <span>{brand}</span>
                             {selectedBrand === brand && (
-                              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                              <svg className="w-5 h-5 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                               </svg>
                             )}
@@ -274,7 +313,7 @@ export default function Products() {
                       setIsBrandOpen(false);
                       setIsSortOpen(!isSortOpen);
                     }}
-                    className="w-full px-4 py-2 bg-white border rounded-lg focus:ring-2 focus:ring-rose-400 flex items-center justify-between"
+                    className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent hover:border-gray-400 transition-colors flex items-center justify-between"
                   >
                     <span className="text-gray-700">{getSortLabel()}</span>
                     <svg
@@ -290,25 +329,25 @@ export default function Products() {
                   </button>
                   
                   {isSortOpen && (
-                    <div className="absolute z-20 w-full mt-1 bg-white border rounded-lg shadow-lg">
+                    <div className="absolute z-20 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
                       <div className="py-1">
                         {sortOptions.map(option => (
                           <button
                             key={option.value}
                             onClick={() => {
-                              setSortBy(option.value as 'name' | 'price');
+                              setSortBy(option.value as 'name' | 'price-low' | 'price-high');
                               setIsSortOpen(false);
                             }}
-                            className={`w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center justify-between ${
-                              sortBy === option.value ? 'bg-rose-50 text-rose-600' : 'text-gray-700'
+                            className={`w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors flex items-center justify-between ${
+                              sortBy === option.value ? 'bg-rose-50 text-rose-600 font-medium' : 'text-gray-700'
                             }`}
                           >
-                            <div className="flex items-center">
-                              <span className="w-6 text-center">{option.icon}</span>
+                            <div className="flex items-center gap-2">
+                              <span className="w-6 text-center text-sm">{option.icon}</span>
                               <span>{option.label}</span>
                             </div>
                             {sortBy === option.value && (
-                              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                              <svg className="w-5 h-5 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                               </svg>
                             )}
@@ -323,7 +362,14 @@ export default function Products() {
 
             {/* Results count */}
             <div className="mt-4 text-sm text-gray-600">
-              Showing {filteredProducts.length} of {products.length} products
+              {searchQuery ? (
+                <span>
+                  Found {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} matching "{searchQuery}" 
+                  {filteredProducts.length !== products.length && ` out of ${products.length} total products`}
+                </span>
+              ) : (
+                <span>Showing {filteredProducts.length} of {products.length} products</span>
+              )}
             </div>
           </div>
         </section>
@@ -331,107 +377,78 @@ export default function Products() {
         {/* Products Grid */}
         <section className="py-12">
           <div className="container mx-auto px-6">
-            <div id="products-section" className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {currentProducts.map((product) => (
-                <Link
-                  key={product.id}
-                  href={`/products/${product.id}`}
-                  className="bg-white pt-10 rounded-xl overflow-hidden transition-all duration-300 group hover:shadow-md"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="transition-transform duration-500 group-hover:scale-105 object-contain"
-                    />
-                    {(product.isBestSeller || product.isSpecialOffer) && (
-                      <div className="absolute top-4 left-4 flex gap-2">
-                        {product.isBestSeller && (
-                          <div className="bg-rose-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
-                            Best Seller
-                          </div>
-                        )}
-                        {product.isSpecialOffer && (
-                          <div className="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
-                            {product.specialOfferDiscount}% OFF
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-4">
-                      <span className="px-3 py-1 bg-gradient-to-r from-rose-50 to-purple-50 text-rose-600 rounded-full text-sm font-medium">
-                        {product.brand}
-                      </span>
-                      <span className={`px-3 py-1 text-sm rounded-full ${
-                        product.category === 'Interior'
-                          ? 'bg-blue-50 text-blue-600'
-                          : product.category === 'Exterior'
-                          ? 'bg-green-50 text-green-600'
-                          : 'bg-amber-50 text-amber-600'
-                      }`}>
-                        {product.category}
-                      </span>
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-rose-500 transition-colors">
-                      {product.name}
-                    </h3>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
-                          ${product.price.toFixed(2)}
-                        </span>
-                        {product.isSpecialOffer && (
-                          <span className="text-sm text-gray-400 line-through">
-                            ${(product.price / (1 - (product.specialOfferDiscount || 0) / 100)).toFixed(2)}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="mt-12 flex justify-center gap-2">
+            {filteredProducts.length === 0 ? (
+              <div className="text-center py-12">
+                <div className="mb-6">
+                  <svg className="w-16 h-16 text-gray-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
+                <p className="text-gray-600 mb-6">
+                  {searchQuery 
+                    ? `No products match "${searchQuery}". Try adjusting your search terms or filters.`
+                    : 'No products match your current filters. Try adjusting your selection.'
+                  }
+                </p>
                 <button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 1}
-                  className="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  onClick={() => {
+                    setSearchQuery('');
+                    setSelectedCategory('All');
+                    setSelectedBrand('All');
+                  }}
+                  className="px-6 py-2 bg-gradient-to-r from-rose-500 to-purple-500 text-white rounded-lg hover:shadow-lg transition-all duration-300"
                 >
-                  Previous
-                </button>
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
-                  <button
-                    key={pageNumber}
-                    onClick={() => handlePageChange(pageNumber)}
-                    className={`px-4 py-2 rounded-lg ${
-                      currentPage === pageNumber
-                        ? 'bg-gradient-to-r from-rose-500 to-purple-500 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {pageNumber}
-                  </button>
-                ))}
-                <button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                  className="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Next
+                  Clear All Filters
                 </button>
               </div>
-            )}
+            ) : (
+              <>
+                <div id="products-section" className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                  {currentProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
 
-            {/* Results count */}
-            <div className="mt-6 text-center text-sm text-gray-600">
-              Showing {indexOfFirstProduct + 1} to {Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length} products
-            </div>
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="mt-12 flex justify-center gap-2">
+                    <button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Previous
+                    </button>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+                      <button
+                        key={pageNumber}
+                        onClick={() => handlePageChange(pageNumber)}
+                        className={`px-4 py-2 rounded-lg ${
+                          currentPage === pageNumber
+                            ? 'bg-gradient-to-r from-rose-500 to-purple-500 text-white'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                      >
+                        {pageNumber}
+                      </button>
+                    ))}
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
+
+                {/* Results count */}
+                <div className="mt-6 text-center text-sm text-gray-600">
+                  Showing {indexOfFirstProduct + 1} to {Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length} products
+                </div>
+              </>
+            )}
           </div>
         </section>
       </div>

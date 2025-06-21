@@ -6,24 +6,24 @@ export default function Services() {
   const services = [
     {
       title: "Interior Painting",
-      description: "Transform your indoor spaces with our premium interior painting service",
+      description: "Professional interior painting services for homes and offices with premium quality paints and finishes.",
       image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&auto=format&fit=crop&q=80",
-      price: "From $299",
-      features: ["Premium paint selection", "Color consultation", "Surface preparation", "Multiple coat application"]
+      price: "From ₹299",
+      features: ["Color consultation", "Surface preparation", "Premium paints", "Clean finish", "Warranty included"]
     },
     {
       title: "Exterior Painting",
-      description: "Protect and beautify your property's exterior with durable paint solutions",
+      description: "Durable exterior painting solutions that protect and beautify your building's facade.",
       image: "https://images.unsplash.com/photo-1599619351208-3e6c839d6828?w=800&auto=format&fit=crop&q=80",
-      price: "From $499",
-      features: ["Weather-resistant paints", "Surface cleaning", "Repair and preparation", "Professional application"]
+      price: "From ₹499",
+      features: ["Weather-resistant paints", "Surface treatment", "Long-lasting finish", "UV protection", "Maintenance guide"]
     },
     {
       title: "Color Consultation",
-      description: "Get expert advice to find the perfect palette for your space",
+      description: "Expert color consultation to help you choose the perfect palette for your space.",
       image: "https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&auto=format&fit=crop&q=80",
-      price: "From $99",
-      features: ["Personalized color schemes", "Trend analysis", "Lighting considerations", "Sample testing"]
+      price: "From ₹99",
+      features: ["Personal consultation", "Color samples", "Digital mockups", "Expert advice", "Follow-up support"]
     },
     {
       title: "Commercial Painting",
@@ -173,7 +173,7 @@ export default function Services() {
                   {[
                     {
                       title: "Expert Paint Consulting",
-                      description: "We help customers select the ideal paint based on their home’s design, whether it’s contemporary, traditional, or modern.",
+                      description: "We help customers select the ideal paint based on their home's design, whether it's contemporary, traditional, or modern.",
                       icon: (
                         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -191,7 +191,7 @@ export default function Services() {
                     },
                     {
                       title: "Exclusive Add-ons & Warranty",
-                      description: "Our commitment doesn’t end with a sale. We offer free water service for a year and free touch-ups on selected products, ensuring long-term satisfaction.",
+                      description: "Our commitment doesn't end with a sale. We offer free water service for a year and free touch-ups on selected products, ensuring long-term satisfaction.",
                       icon: (
                         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />

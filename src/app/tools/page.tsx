@@ -40,42 +40,42 @@ export default function Tools() {
     {
       name: "Professional Brush Set",
       image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&auto=format&fit=crop&q=80",
-      price: "$29.99"
+      price: "₹29.99"
     },
     {
       name: "Pro Roller System",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80",
-      price: "$39.99"
+      price: "₹39.99"
     },
     {
       name: "Paint Sprayer",
       image: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&auto=format&fit=crop&q=80",
-      price: "$199.99"
+      price: "₹199.99"
     },
     {
       name: "Complete Painter's Kit",
       image: "https://images.unsplash.com/photo-1572269951301-d623321c9595?w=800&auto=format&fit=crop&q=80",
-      price: "$89.99"
+      price: "₹89.99"
     },
     {
       name: "Paint Mixer",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80",
-      price: "$49.99"
+      price: "₹49.99"
     },
     {
       name: "Paint Tray Set",
       image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&auto=format&fit=crop&q=80",
-      price: "$24.99"
+      price: "₹24.99"
     },
     {
       name: "Paint Scraper Kit",
       image: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&auto=format&fit=crop&q=80",
-      price: "$19.99"
+      price: "₹19.99"
     },
     {
       name: "Paint Edger",
       image: "https://images.unsplash.com/photo-1572269951301-d623321c9595?w=800&auto=format&fit=crop&q=80",
-      price: "$34.99"
+      price: "₹34.99"
     }
   ];
 
